@@ -4,49 +4,250 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Shopziexpress prototype</title>
-<!-- Instant redirect so the short link keeps working. A visible link is below
-     for anyone whose browser blocks the refresh, and for screen readers. -->
-<meta http-equiv="refresh" content="0; url=prototype/">
-<link rel="canonical" href="prototype/">
+<title>Shopziexpress prototype — every version</title>
+<meta name="description" content="Every version of the Shopziexpress design prototype, newest first. Each one keeps its own permanent link.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{--cream:#F6F5EE;--deep:#023525;--yel:#FED415;--mid:#5A625C;--pill:999px}
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:Manrope,system-ui,sans-serif;background:var(--cream);color:var(--deep);
-       min-height:100vh;display:grid;place-items:center;padding:28px;line-height:1.55}
-  main{max-width:34rem;text-align:center}
-  .glyph{width:54px;height:54px;border-radius:50%;background:var(--yel);display:grid;
-         place-items:center;margin:0 auto 20px}
-  h1{font-size:clamp(24px,4vw,32px);font-weight:800;letter-spacing:-.035em;line-height:1.15}
-  p{margin-top:12px;font-size:16px;color:var(--mid)}
-  a.go{display:inline-block;margin-top:24px;background:var(--yel);color:var(--deep);
-       font-weight:800;font-size:16px;padding:14px 28px;border-radius:var(--pill);
-       text-decoration:none;transition:background .2s cubic-bezier(.22,.61,.36,1),
-       box-shadow .2s cubic-bezier(.22,.61,.36,1)}
-  a.go:hover,a.go:focus-visible{background:#fff;box-shadow:inset 0 0 0 2px var(--deep)}
-  :focus-visible{outline:3px solid var(--deep);outline-offset:3px}
-  .small{margin-top:22px;font-size:13.5px;color:var(--mid)}
-  .small a{color:var(--deep)}
+/* Tokens are the live prototype's, verbatim. Every pairing used below was measured
+   with scripts/contrast.py before it was used, not judged after:
+     --ink on white 17.87:1   --mid on white 6.29:1    --soft on white 4.67:1
+     white on --deep 12.23:1  --green-d on white 7.42:1 --deep on --tint2 10.90:1
+     --mid on --tint 5.87:1   --line on white 3.86:1 (borders only, never text) */
+:root{
+  --ground:#FFFFFF; --white:#FFFFFF; --tint:#F4F8F3; --tint2:#EDF4E9; --green-soft:#E8F2EA;
+  --deep:#0B3D2B; --action:#14704F; --green:#1B7F47; --green-d:#146237;
+  --ink:#14181A; --mid:#5A625C; --soft:#6E7671; --line:#7B847D; --hair:#E7EBE7;
+  --r-s:12px; --r-m:18px; --r-l:24px; --r-xl:32px; --pill:999px;
+  --sh:0 2px 6px rgba(11,61,43,.05), 0 10px 28px rgba(11,61,43,.07);
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ground);color:var(--ink);
+  font-family:Manrope,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:where(a,button):focus-visible{outline:3px solid var(--deep);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-weight:800;letter-spacing:-.035em;line-height:1.15}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;left:-9999px;top:8px;z-index:300;background:var(--deep);color:#fff;
+  padding:12px 20px;border-radius:var(--pill);font-weight:700;text-decoration:none}
+.skip:focus{left:26px}
+
+.wrap{max-width:860px;margin:0 auto;padding:36px 26px 72px}
+
+.top{display:flex;align-items:center;gap:11px;margin-bottom:30px}
+.top a{text-decoration:none;display:flex;align-items:center;gap:11px}
+.glyph{width:36px;height:36px;flex:0 0 36px;border-radius:50%;background:var(--tint2);
+  display:grid;place-items:center;color:var(--deep)}
+.top b{font-size:17px;font-weight:800;letter-spacing:-.02em;color:var(--deep)}
+
+h1{font-size:clamp(25px,3.4vw,34px);color:var(--deep)}
+.lede{margin-top:12px;font-size:16.5px;color:var(--mid);max-width:62ch}
+
+/* ---------- the current version ---------- */
+.now{margin-top:26px;background:var(--deep);border-radius:var(--r-xl);padding:24px;color:#fff}
+.now :where(a,button):focus-visible{outline-color:#fff}
+.now .badge{display:inline-block;font-size:12px;font-weight:800;padding:4px 11px;
+  border-radius:var(--pill);background:#fff;color:var(--deep);margin-bottom:10px}
+.now h2{font-size:20px;color:#fff}
+.now .when{display:block;font-size:12.5px;font-weight:700;color:rgba(255,255,255,.78);
+  margin-top:7px;text-transform:uppercase;letter-spacing:.05em}
+.now p{margin-top:9px;font-size:14.5px;color:rgba(255,255,255,.84);max-width:60ch}
+.now .row{margin-top:18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.now a.go{display:inline-flex;align-items:center;gap:9px;background:#fff;color:var(--deep);
+  font-weight:800;font-size:15px;padding:12px 22px;border-radius:var(--pill);
+  text-decoration:none;transition:background .2s var(--ease),box-shadow .2s var(--ease)}
+.now a.go:hover,.now a.go:focus-visible{background:var(--tint2);box-shadow:0 6px 18px rgba(0,0,0,.26)}
+.now .perma{font-size:13px;color:rgba(255,255,255,.8);word-break:break-all;max-width:none}  /* max-width:none, or it inherits the 60ch measure from .now p and breaks
+     the URL mid-word on a wide screen where it would fit on one line */
+
+/* ---------- the list ---------- */
+h2.sec{margin:40px 0 6px;font-size:20px;color:var(--deep)}
+.subtle{font-size:14.5px;color:var(--mid);max-width:64ch}
+
+ol.list{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:14px}
+.item{background:var(--white);border-radius:var(--r-l);padding:18px 20px;
+  box-shadow:inset 0 0 0 1px var(--hair), var(--sh);
+  display:flex;flex-wrap:wrap;gap:14px 20px;align-items:flex-start}
+.item .body{flex:1 1 320px;min-width:0}
+.item h3{font-size:16.5px;color:var(--deep)}
+.item h3 a{text-decoration:none;padding-block:4px}  /* padding, not inline-block: lifts the hit box to 26px for WCAG 2.5.8
+     without changing the line box. Measured at 18px before this. */
+.item h3 a:hover{text-decoration:underline;text-underline-offset:3px}
+.item .when{display:block;font-size:12.5px;font-weight:700;color:var(--soft);margin-bottom:5px;
+  text-transform:uppercase;letter-spacing:.05em}
+.item p{margin-top:6px;font-size:14.5px;color:var(--mid)}
+.item .perma{margin-top:9px;font-size:12.5px;color:var(--soft);word-break:break-all}
+.item .open{flex:0 0 auto;align-self:center;font-size:14px;font-weight:700;padding:10px 18px;
+  border-radius:var(--pill);text-decoration:none;color:var(--deep);
+  box-shadow:inset 0 0 0 1px var(--line);transition:box-shadow .2s var(--ease)}
+.item .open:hover,.item .open:focus-visible{box-shadow:inset 0 0 0 2px var(--deep)}
+/* a version we cannot serve. Greyed, but still listed, or the sequence has a hole in it */
+.item.gone{background:var(--tint)}
+.item.gone h3{color:var(--mid)}
+.item .open.off{color:var(--soft);box-shadow:inset 0 0 0 1px var(--hair);cursor:default}
+
+.note{margin-top:34px;padding:20px;background:var(--tint2);border-radius:var(--r-m);
+  font-size:14.5px;color:var(--ink);line-height:1.65}
+.note h2{font-size:16px;color:var(--deep);margin-bottom:8px}
+.note b{font-weight:800}
+.note ul{margin:8px 0 0 20px}
+.note li{margin-top:5px}
+
+footer{margin-top:40px;padding-top:22px;border-top:1px solid var(--hair);
+  font-size:13.5px;color:var(--soft)}
+footer a{color:var(--green-d)}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+@media (max-width:560px){
+  .wrap{padding:28px 18px 56px}
+  .item .open{align-self:stretch;text-align:center}
+}
 </style>
 </head>
 <body>
-<main>
-  <span class="glyph" aria-hidden="true">
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#023525"
-         stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M3.4 4.2h2l1 2.6M6.4 6.8l1.9 6.4h8.1l2.2-6.4z"/>
-      <circle cx="9.5" cy="18.4" r="1.5"/><circle cx="16.5" cy="18.4" r="1.5"/>
-    </svg>
-  </span>
-  <h1>Shopziexpress design prototype</h1>
-  <p>Taking you to the current version.</p>
-  <a class="go" href="prototype/">Open the prototype</a>
-  <p class="small">Older versions are kept in
-    <a href="https://github.com/Riccardo-star3/Shopzie-Prototype-RiccardoRepo/tree/main/archive">archive/</a>
-    on GitHub.</p>
-</main>
+<a class="skip" href="#main">Skip to main content</a>
+
+<div class="wrap">
+
+  <p class="top">
+    <a href="v6-2026-09-11/">
+      <span class="glyph" aria-hidden="true">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.4 4.2h2l1 2.6M6.4 6.8l1.9 6.4h8.1l2.2-6.4z"/>
+          <circle cx="9.5" cy="18.4" r="1.5"/><circle cx="16.5" cy="18.4" r="1.5"/>
+        </svg>
+      </span>
+      <b>Shopziexpress</b>
+    </a>
+  </p>
+
+  <main id="main" tabindex="-1">
+    <h1>The prototype, every version</h1>
+    <p class="lede">Each version has its own permanent link. Once a version is published its
+      link never changes and its contents are never edited again, so a link shared today still
+      shows the same thing in a year, and a decision can be traced back to what people were
+      actually looking at when they made it.</p>
+
+    <div class="now">
+      <span class="badge">Current</span>
+      <h2>Version 6 — one file, six routes, seller dashboard</h2>
+      <span class="when">Published 11 September 2026</span>
+      <p>The whole prototype became a single HTML file with six routes, so the links between
+        pages work. The previous version was five separate pages and every link between them
+        was dead. The palette moved to green on white. New: the seller dashboard, showing one
+        seller who sells products <em>and</em> offers services.</p>
+      <div class="row">
+        <a class="go" href="v6-2026-09-11/">Open version 6</a>
+        <a class="go" href="https://github.com/Riccardo-star3/Shopzie-Prototype-RiccardoRepo/blob/main/v6-2026-09-11/WHAT-CHANGED.md" style="background:transparent;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.55)">What changed, in full</a>
+      </div>
+      <p class="perma">Permanent link:
+        https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v6-2026-09-11/</p>
+    </div>
+
+    <h2 class="sec">Every version</h2>
+    <p class="subtle">Newest first. Everything below the current one is frozen: links inside
+      those versions may not work, and none of the accessibility or copy fixes made since have
+      been applied to them.</p>
+
+    <ol class="list">
+
+      <li class="item">
+        <div class="body">
+          <span class="when">Version 6 · 11 September 2026 · current</span>
+          <h3><a href="v6-2026-09-11/">One file, six routes, seller dashboard</a></h3>
+          <p>Single HTML file routing in place, so every link between pages works. Green palette
+            on white, replacing the light grey ground. Adds the seller dashboard.</p>
+          <p class="perma">/v6-2026-09-11/</p>
+        </div>
+        <a class="open" href="v6-2026-09-11/">Open<span class="sr-only"> version 6</span></a>
+      </li>
+
+      <li class="item">
+        <div class="body">
+          <span class="when">Version 5 · August 2026</span>
+          <h3><a href="archive/2026-09-11/">Video hero — light grey ground, five pages</a></h3>
+          <p>Five separately published pages opening on a full-screen background video. Replaced
+            because each page sat on its own origin, so every link between them was dead:
+            clicking “Shop” left the prototype altogether.</p>
+          <p class="perma">/archive/2026-09-11/</p>
+        </div>
+        <a class="open" href="archive/2026-09-11/">Open<span class="sr-only"> version 5</span></a>
+      </li>
+
+      <li class="item">
+        <div class="body">
+          <span class="when">Version 4 · 16 August 2026</span>
+          <h3><a href="archive/2026-08-16/">Framed build — deep-green hero, four pages</a></h3>
+          <p>Content inside a white app frame on a cream ground, hero as a deep-green box holding
+            the weaver photograph. Replaced by a full-width layout on a light grey ground, with
+            the start-selling page added.</p>
+          <p class="perma">/archive/2026-08-16/</p>
+        </div>
+        <a class="open" href="archive/2026-08-16/">Open<span class="sr-only"> version 4</span></a>
+      </li>
+
+      <li class="item">
+        <div class="body">
+          <span class="when">Version 3 · July 2026</span>
+          <h3><a href="archive/v3.html">Retail marketplace layout</a></h3>
+          <p>Dense retail grid, closer to a supermarket than a marketplace. Dropped because it
+            gave services no place to live. Originally called “SHOPZI v3”.</p>
+          <p class="perma">/archive/v3.html</p>
+        </div>
+        <a class="open" href="archive/v3.html">Open<span class="sr-only"> version 3</span></a>
+      </li>
+
+      <li class="item">
+        <div class="body">
+          <span class="when">Version 2 · July 2026</span>
+          <h3><a href="archive/v2.html">Warm artisan direction</a></h3>
+          <p>Earthy palette and editorial layout. Dropped as too premium and too slow for a buyer
+            who already knows what she is looking for. Originally called “SHOPZI v2”.</p>
+          <p class="perma">/archive/v2.html</p>
+        </div>
+        <a class="open" href="archive/v2.html">Open<span class="sr-only"> version 2</span></a>
+      </li>
+
+      <li class="item gone">
+        <div class="body">
+          <span class="when">Version 1 · June 2026</span>
+          <h3>First prototype, built in Lovable</h3>
+          <p>The starting point, before the design system existed. Not archived here: it lived on
+            a Lovable subdomain and that address now serves an unrelated app. Listed so the
+            sequence has no hole in it.</p>
+        </div>
+        <span class="open off">No longer online</span>
+      </li>
+
+    </ol>
+
+    <div class="note">
+      <h2>How this works</h2>
+      <p>So that a link shared with the team keeps working for as long as anyone needs it:</p>
+      <ul>
+        <li><b>Every version gets its own dated folder</b>, and that becomes its permanent link.</li>
+        <li><b>A published version is never edited.</b> Corrections go into the next version, not
+          backwards into an old one.</li>
+        <li><b>This page is the only link that changes.</b> It gains a row each time, and the
+          rows already on it stay exactly as they are.</li>
+      </ul>
+      <p style="margin-top:10px">Share a <b>version link</b> when you want someone to look at a
+        specific version. Share <b>this page</b> when you want them to find whichever is current.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>Shopziexpress design prototype. All content is placeholder: prices, seller names, ratings
+      and orders are invented so the pages feel real. This is a design prototype, not the website.</p>
+  </footer>
+
+</div>
 </body>
 </html>
