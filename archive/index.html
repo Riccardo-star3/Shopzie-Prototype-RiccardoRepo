@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Earlier versions — Shopziexpress prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F6F5EE; --white:#FFFFFF; --deep:#023525;
+  --yel:#FED415; --grn:#147F12; --grn-soft:#E6F3E4;
+  --ink:#0F1A14; --mid:#5A625C; --soft:#646C66; --line:#7B847D; --hair:#E8E7DF;
+  --r-s:12px; --r-m:18px; --r-l:24px; --r-xl:32px; --pill:999px;
+  --sh:0 2px 6px rgba(2,53,37,.05), 0 10px 28px rgba(2,53,37,.07);
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--ink);font-family:Manrope,system-ui,sans-serif;
+  font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:where(a,button):focus-visible{outline:3px solid var(--deep);outline-offset:3px;border-radius:8px}
+h1,h2,h3{font-weight:800;letter-spacing:-.035em;line-height:1.15}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;left:-9999px;top:8px;z-index:300;background:var(--deep);color:#fff;
+  padding:12px 20px;border-radius:var(--pill);font-weight:700;text-decoration:none}
+.skip:focus{left:26px}
+
+.wrap{max-width:820px;margin:0 auto;padding:36px 26px 72px}
+
+.top{display:flex;align-items:center;gap:11px;margin-bottom:30px}
+.glyph{width:36px;height:36px;flex:0 0 36px;border-radius:50%;background:var(--yel);
+  display:grid;place-items:center;color:var(--deep)}
+.top b{font-size:17px;font-weight:800;letter-spacing:-.02em}
+.top a{text-decoration:none}
+
+h1{font-size:clamp(25px,3.4vw,34px)}
+.lede{margin-top:12px;font-size:16.5px;color:var(--mid);max-width:60ch}
+
+.now{margin-top:26px;background:var(--deep);border-radius:var(--r-xl);padding:22px 24px;
+  color:#fff;display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+.now :where(a,button):focus-visible{outline-color:var(--yel)}
+.now .t{flex:1 1 300px}
+.now h2{font-size:19px;color:#fff}
+.now p{margin-top:6px;font-size:14.5px;color:rgba(255,255,255,.8)}
+.now .badge{display:inline-block;font-size:12px;font-weight:800;padding:4px 11px;
+  border-radius:var(--pill);background:var(--yel);color:var(--deep);margin-bottom:9px}
+.now a.go{display:inline-flex;align-items:center;gap:9px;background:var(--yel);color:var(--deep);
+  font-weight:800;font-size:15px;padding:12px 22px;border-radius:var(--pill);
+  text-decoration:none;transition:background .2s var(--ease),box-shadow .2s var(--ease)}
+.now a.go:hover,.now a.go:focus-visible{background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.24)}
+
+h2.sec{margin:38px 0 6px;font-size:20px}
+.subtle{font-size:14.5px;color:var(--mid);max-width:62ch}
+
+ol.list{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:14px}
+.item{background:var(--white);border-radius:var(--r-l);padding:18px 20px;box-shadow:var(--sh);
+  display:flex;flex-wrap:wrap;gap:14px 20px;align-items:flex-start}
+.item .body{flex:1 1 320px;min-width:0}
+.item h3{font-size:16.5px}
+.item h3 a{text-decoration:none}
+.item h3 a:hover{text-decoration:underline;text-underline-offset:3px}
+.item .when{display:block;font-size:12.5px;font-weight:700;color:var(--soft);margin-bottom:5px;
+  text-transform:uppercase;letter-spacing:.05em}
+.item p{margin-top:6px;font-size:14.5px;color:var(--mid)}
+.item .open{flex:0 0 auto;align-self:center;font-size:14px;font-weight:700;padding:10px 18px;
+  border-radius:var(--pill);text-decoration:none;color:var(--deep);
+  box-shadow:inset 0 0 0 1px var(--line);transition:box-shadow .2s var(--ease)}
+.item .open:hover,.item .open:focus-visible{box-shadow:inset 0 0 0 2px var(--deep)}
+/* a version we cannot serve. Greyed, but still listed, or the sequence has a hole in it */
+.item.gone{background:#FBFAF5}
+.item.gone h3{color:var(--mid)}
+.item .open.off{color:var(--soft);box-shadow:inset 0 0 0 1px var(--hair);cursor:default}
+
+.note{margin-top:30px;padding:18px 20px;background:var(--grn-soft);border-radius:var(--r-m);
+  font-size:14.5px;color:var(--ink);line-height:1.65}
+.note b{font-weight:800}
+
+footer{margin-top:40px;padding-top:22px;border-top:1px solid var(--hair);
+  font-size:13.5px;color:var(--soft)}
+footer a{color:var(--deep)}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<div class="wrap">
+
+  <p class="top">
+    <a href="../prototype/" class="top" style="display:flex;align-items:center;gap:11px">
+      <span class="glyph" aria-hidden="true">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.4 4.2h2l1 2.6M6.4 6.8l1.9 6.4h8.1l2.2-6.4z"/>
+          <circle cx="9.5" cy="18.4" r="1.5"/><circle cx="16.5" cy="18.4" r="1.5"/>
+        </svg>
+      </span>
+      <b>Shopziexpress</b>
+    </a>
+  </p>
+
+  <main id="main" tabindex="-1">
+    <h1>Earlier versions</h1>
+    <p class="lede">Every version of the prototype that has been shared with the team, newest
+      first. Kept so a decision can be traced back to what people were actually looking at
+      when they made it.</p>
+
+    <div class="now">
+      <div class="t">
+        <span class="badge">Current</span>
+        <h2>The version to review</h2>
+        <p>Five pages — landing, shop, services, product and start&nbsp;selling. The landing page
+          now opens on a full-screen background video. This is the one to give feedback on.</p>
+      </div>
+      <a class="go" href="../prototype/">Open the current prototype</a>
+    </div>
+
+    <h2 class="sec">Superseded</h2>
+    <p class="subtle">These are frozen. Links inside them may not work, and none of the
+      accessibility or copy fixes made since have been applied.</p>
+
+    <ol class="list">
+      <li class="item">
+        <div class="body">
+          <span class="when">August 2026</span>
+          <h3><a href="2026-09-11/">Video hero — light grey ground, five pages</a></h3>
+          <p>Five separately linked pages on a light grey ground, opening on a full-screen
+            background video. Replaced by the current version, which moves to a green palette on
+            white, merges every page into one document that routes in place, and adds the seller
+            dashboard. The five pages went because each published page sat on its own origin, so
+            every link between them was dead — clicking &ldquo;Shop&rdquo; left the prototype
+            altogether.</p>
+        </div>
+        <a class="open" href="2026-09-11/">Open<span class="sr-only"> the video-hero version</span></a>
+      </li>
+      <li class="item">
+        <div class="body">
+          <span class="when">August 2026</span>
+          <h3><a href="2026-08-16/">Framed build — deep-green hero, four pages</a></h3>
+          <p>Content inside a white app frame on a cream ground, with the hero as a deep-green
+            box holding the weaver photograph. Four pages. Replaced by the current version,
+            which drops the frame, runs full width, opens on a background video, adds the
+            start-selling page and moves everything onto a light grey ground.</p>
+        </div>
+        <a class="open" href="2026-08-16/">Open<span class="sr-only"> the framed build</span></a>
+      </li>
+
+      <li class="item">
+        <div class="body">
+          <span class="when">July 2026</span>
+          <h3><a href="v3.html">SHOPZI v3 — retail marketplace layout</a></h3>
+          <p>Dense retail grid, closer to a supermarket than a marketplace. Dropped because it
+            gave services no place to live.</p>
+        </div>
+        <a class="open" href="v3.html">Open<span class="sr-only"> version 3</span></a>
+      </li>
+
+      <li class="item">
+        <div class="body">
+          <span class="when">July 2026</span>
+          <h3><a href="v2.html">SHOPZI v2 — warm artisan direction</a></h3>
+          <p>Earthy palette and editorial layout. Dropped as too premium and slow for a buyer
+            who already knows what she is looking for.</p>
+        </div>
+        <a class="open" href="v2.html">Open<span class="sr-only"> version 2</span></a>
+      </li>
+
+      <li class="item gone">
+        <div class="body">
+          <span class="when">June 2026</span>
+          <h3>First prototype, built in Lovable</h3>
+          <p>The starting point, before the design system existed. Not archived here: it lived on
+            a Lovable subdomain, and that address now serves an unrelated app. Listed so the
+            sequence is complete.</p>
+        </div>
+        <span class="open off">No longer online</span>
+      </li>
+    </ol>
+
+    <p class="note"><b>How this list grows.</b> The current version always lives at
+      <code>/prototype/</code>, so the link shared with the team never changes. Before replacing
+      it, copy the outgoing <code>prototype/</code> folder into a dated folder here — for example
+      <code>2026-08-16/</code> — and add a row to the top of the list pointing at it. <b>Copy it
+      first.</b> The August build above is listed as not archived because it was overwritten
+      before anyone thought to snapshot it.</p>
+  </main>
+
+  <footer>
+    <p>Shopziexpress Oy · Helsinki. All content in these prototypes is placeholder.
+      <a href="../">Back to the prototype</a></p>
+  </footer>
+
+</div>
+</body>
+</html>

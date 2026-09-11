@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Shopziexpress prototype</title>
+<!-- Instant redirect so the short link keeps working. A visible link is below
+     for anyone whose browser blocks the refresh, and for screen readers. -->
+<meta http-equiv="refresh" content="0; url=prototype/">
+<link rel="canonical" href="prototype/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#F6F5EE;--deep:#023525;--yel:#FED415;--mid:#5A625C;--pill:999px}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Manrope,system-ui,sans-serif;background:var(--cream);color:var(--deep);
+       min-height:100vh;display:grid;place-items:center;padding:28px;line-height:1.55}
+  main{max-width:34rem;text-align:center}
+  .glyph{width:54px;height:54px;border-radius:50%;background:var(--yel);display:grid;
+         place-items:center;margin:0 auto 20px}
+  h1{font-size:clamp(24px,4vw,32px);font-weight:800;letter-spacing:-.035em;line-height:1.15}
+  p{margin-top:12px;font-size:16px;color:var(--mid)}
+  a.go{display:inline-block;margin-top:24px;background:var(--yel);color:var(--deep);
+       font-weight:800;font-size:16px;padding:14px 28px;border-radius:var(--pill);
+       text-decoration:none;transition:background .2s cubic-bezier(.22,.61,.36,1),
+       box-shadow .2s cubic-bezier(.22,.61,.36,1)}
+  a.go:hover,a.go:focus-visible{background:#fff;box-shadow:inset 0 0 0 2px var(--deep)}
+  :focus-visible{outline:3px solid var(--deep);outline-offset:3px}
+  .small{margin-top:22px;font-size:13.5px;color:var(--mid)}
+  .small a{color:var(--deep)}
+</style>
+</head>
+<body>
+<main>
+  <span class="glyph" aria-hidden="true">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#023525"
+         stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3.4 4.2h2l1 2.6M6.4 6.8l1.9 6.4h8.1l2.2-6.4z"/>
+      <circle cx="9.5" cy="18.4" r="1.5"/><circle cx="16.5" cy="18.4" r="1.5"/>
+    </svg>
+  </span>
+  <h1>Shopziexpress design prototype</h1>
+  <p>Taking you to the current version.</p>
+  <a class="go" href="prototype/">Open the prototype</a>
+  <p class="small">Older versions are kept in
+    <a href="https://github.com/Riccardo-star3/Shopzie-Prototype-RiccardoRepo/tree/main/archive">archive/</a>
+    on GitHub.</p>
+</main>
+</body>
+</html>

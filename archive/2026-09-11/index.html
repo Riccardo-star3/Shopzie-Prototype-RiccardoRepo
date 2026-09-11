@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shopziexpress — Buy the cloth. Book the tailor.</title>
+<meta name="description" content="Buy products or book skilled people. Food, fabric, beauty and home, plus braiding, tailoring, catering and trades — across Finland and the EU.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+.skip{position:absolute;left:-9999px;top:8px;z-index:300;background:var(--deep);color:#fff;padding:12px 20px;border-radius:var(--pill);font-weight:700}
+.skip:focus{left:26px}
+
+/* ============================================================
+   SHOPZIEXPRESS
+   Pattern language sampled directly from the Instacart screenshots:
+     cream page      #F6F5EE
+     deep surface    #023525
+     yellow CTA      #FED415   ← already their button colour
+     action green    #147F12
+   Orange removed entirely; yellow does that work instead.
+   All pairs contrast-checked to WCAG 2.1 AA.
+   ============================================================ */
+:root{
+  --cream:#F6F5EE;
+  --white:#FFFFFF;
+  --deep:#023525;        /* 13.65:1 with white */
+  --deep2:#014120;
+  --yel:#FED415;         /* fill only — 9.52:1 with deep, 1.43:1 with white */
+  --yel-lt:#FFDB41;      /* pill body — sampled from reference */
+  --yel-h:#FFE04A;
+  --yel-soft:#FFF7CE;
+  --grn:#147F12;         /* 5.15:1 with white */
+  --grn-d:#0E6410;
+  --grn-soft:#E6F3E4;
+  --ink:#0F1A14;
+  --mid:#5A625C;         /* 5.76:1 on cream */
+  --soft:#646C66;        /* 4.95:1 on cream */
+  --line:#7B847D;        /* 3.11:1 on white — control borders */
+  --hair:#E8E7DF;        /* decorative only */
+  --r-s:12px; --r-m:18px; --r-l:24px; --r-xl:32px; --r-2xl:40px; --pill:999px;
+  --sh:0 2px 6px rgba(2,53,37,.05), 0 10px 28px rgba(2,53,37,.07);
+  --sh-h:0 4px 10px rgba(2,53,37,.07), 0 18px 40px rgba(2,53,37,.12);
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:Manrope,system-ui,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+img{display:block;max-width:100%}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+:where(a,button,input,[tabindex]):focus-visible{outline:3px solid var(--deep);outline-offset:3px;border-radius:8px}
+/* focus must invert on dark surfaces, or it is invisible there */
+.nav :where(a,button,input,[tabindex]):focus-visible,
+.hero :where(a,button,input,[tabindex]):focus-visible,
+.impact :where(a,button,input,[tabindex]):focus-visible{outline-color:var(--yel)}
+/* and on yellow surfaces the green ring is correct — 9.52:1 — no change needed */
+h1,h2,h3{font-weight:800;letter-spacing:-.035em;line-height:1.08}
+
+/* app frame — the white rounded container from the web screenshot */
+.frame{max-width:1300px;margin:26px auto;background:var(--white);border-radius:var(--r-2xl);padding:22px;box-shadow:0 6px 40px rgba(2,53,37,.07)}
+.inner{background:var(--cream);border-radius:var(--r-xl);padding:18px}
+
+
+/* ---------- sticky nav ----------
+   The nav sits inside the cream .inner surface. When it sticks we need a
+   cream band behind it, otherwise product cards scroll through the gaps
+   around the rounded pill. Shadow appears only once it's detached. */
+.navwrap{position:sticky;top:0;z-index:100;background:var(--cream);
+  padding:10px 0 12px;margin-top:-10px;transition:box-shadow .22s var(--ease)}
+.navwrap.stuck{box-shadow:0 10px 26px -8px rgba(2,53,37,.22)}
+@media(max-width:560px){
+  .navwrap{padding:6px 0 8px;margin-top:-6px}
+  .navwrap.stuck .nav{padding-top:8px;padding-bottom:8px}
+}
+
+/* ---------- nav pill ---------- */
+.nav{background:var(--deep);border-radius:var(--pill);padding:11px 14px 11px 20px;display:flex;align-items:center;gap:26px;color:#fff}
+.brand{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+.brand .glyph{width:32px;height:32px;border-radius:50%;background:var(--yel);display:grid;place-items:center;color:var(--deep)}
+.brand b{font-size:18px;font-weight:800;letter-spacing:-.04em}
+.nav nav{display:flex;gap:22px;font-size:14.5px;font-weight:600}
+.nav nav a{opacity:.86;padding:4px 0;border-bottom:2px solid transparent}
+.nav nav a:hover{opacity:1;border-bottom-color:var(--yel)}
+.navend{margin-left:auto;display:flex;align-items:center;gap:10px}
+.nsearch{display:flex;align-items:center;gap:10px;background:#fff;border-radius:var(--pill);padding:9px 18px;width:330px;max-width:34vw}
+.nsearch input{border:0;outline:0;background:0;font-family:inherit;font-size:14px;font-weight:500;color:var(--ink);width:100%;min-width:0}
+.nsearch input::placeholder{color:var(--soft);font-weight:400}
+.circ{width:40px;height:40px;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--deep);position:relative;flex:0 0 40px;transition:.18s}
+.circ:hover{background:var(--yel)}
+.circ .n{position:absolute;top:-3px;right:-3px;background:var(--yel);color:var(--deep);font-size:12px;font-weight:800;border-radius:var(--pill);padding:1px 6px;border:2px solid var(--deep)}
+
+/* ---------- hero ---------- */
+.hero{background:var(--deep);border-radius:var(--r-xl);margin-top:18px;padding:52px 48px;position:relative;overflow:hidden;color:#fff;display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center}
+.hero h1{font-size:clamp(30px,4vw,50px);max-width:13ch;margin-bottom:16px}
+.hero p{font-size:16.5px;color:rgba(255,255,255,.82);max-width:42ch;margin-bottom:28px}
+.hbtns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;font-size:15.5px;font-weight:800;padding:15px 26px;border-radius:var(--pill);transition:.2s var(--ease)}
+/* Primary CTA. One yellow only — the same --yel as the "buy something" door.
+   The circle is that same yellow too, so at rest only the green arrow reads;
+   on hover the pill turns white and the circle appears. No border needed:
+   yellow on the deep-green hero is already 10:1, white is 13.65:1. */
+.btn-y{background:var(--yel);color:var(--deep);padding-right:8px}
+.btn-y:hover,.btn-y:focus-visible{background:#fff;transform:translateY(-1px);box-shadow:0 6px 18px rgba(0,0,0,.22)}
+.btn-y .arrowb{background:var(--yel);color:var(--deep);transition:transform .22s var(--ease)}
+.btn-y:hover .arrowb{transform:rotate(45deg)}   /* ↗ swings to → */
+/* On LIGHT surfaces a white hover would vanish — darken instead, and keep a boundary. */
+.on-light .btn-y{box-shadow:inset 0 0 0 1px rgba(2,53,37,.9)}
+.on-light .btn-y:hover{background:var(--yel-h);box-shadow:inset 0 0 0 1px rgba(2,53,37,.9)}
+.btn-w{background:#fff;color:var(--deep)}
+.btn-w:hover{transform:translateY(-1px)}
+.btn-o{box-shadow:inset 0 0 0 2px rgba(255,255,255,.45);color:#fff}
+.btn-o:hover{box-shadow:inset 0 0 0 2px #fff}
+.arrowb{width:34px;height:34px;border-radius:50%;background:var(--yel);color:var(--deep);display:grid;place-items:center;flex:0 0 34px}
+.heroart{position:relative;aspect-ratio:4/3;border-radius:var(--r-l);overflow:hidden;margin:0}
+.heroart img{width:100%;height:100%;object-fit:cover;display:block}
+.heroart::after{content:'';position:absolute;inset:0;border-radius:inherit;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);
+  background:linear-gradient(160deg,rgba(2,53,37,.10),transparent 45%)}
+.credit{position:absolute;right:10px;bottom:9px;z-index:2;font-size:12px;font-weight:600;letter-spacing:.02em;
+  color:rgba(255,255,255,.9);background:rgba(2,53,37,.45);backdrop-filter:blur(4px);padding:4px 9px;border-radius:var(--pill)}
+.heroart .grain{position:absolute;inset:0;opacity:.13;mix-blend-mode:overlay;filter:url(#gn);pointer-events:none}
+.slotnote{position:absolute;left:12px;top:12px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:rgba(255,255,255,.82);background:rgba(2,53,37,.42);padding:5px 10px;border-radius:var(--pill)}
+
+/* ---------- two doors ---------- */
+
+/* ---------- category tiles ---------- */
+.sec{margin-top:34px}
+.shead{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.shead h2{font-size:24px;color:var(--deep)}
+.shead .more{font-size:14px;font-weight:700;color:var(--deep);display:inline-flex;align-items:center;gap:6px;min-height:24px;padding:2px 4px;margin:-2px -4px;border-radius:8px}
+.shead .more:hover{text-decoration:underline}
+.timer{background:var(--yel);color:var(--deep);font-size:12.5px;font-weight:800;padding:5px 12px;border-radius:var(--pill);margin-left:10px}
+
+.tiles{display:grid;grid-template-columns:repeat(8,1fr);gap:10px}
+.tile{text-align:center;transition:.2s var(--ease)}
+.tile:hover{transform:translateY(-4px)}
+.tile .box{aspect-ratio:1.45/1;border-radius:var(--r-m);background:var(--white);display:grid;place-items:center;margin-bottom:9px;box-shadow:var(--sh);color:var(--deep)}
+.tile > span:last-child{font-size:12.5px;font-weight:700;letter-spacing:-.015em;color:var(--ink)}
+
+/* ---------- product cards ---------- */
+.prods{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.card{background:var(--white);border-radius:var(--r-l);padding:10px;transition:.22s var(--ease);display:flex;flex-direction:column}
+.card:hover{transform:translateY(-4px);box-shadow:var(--sh-h)}
+.cimg{position:relative;aspect-ratio:1/1;border-radius:var(--r-m);overflow:hidden;margin-bottom:11px}
+.cimg .grain{position:absolute;inset:0;opacity:.26;mix-blend-mode:overlay;filter:url(#gn)}
+.heart{position:absolute;right:8px;top:8px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.94);display:grid;place-items:center;color:var(--deep);transition:.18s}
+.heart:hover{background:var(--yel)}
+.sale{position:absolute;left:8px;top:8px;background:var(--yel);color:var(--deep);font-size:12px;font-weight:800;padding:5px 11px;border-radius:var(--pill)}
+.seller{display:flex;align-items:center;gap:6px;margin:0 4px 6px;font-size:12.5px;font-weight:700;color:var(--mid)}
+.seller .av{width:20px;height:20px;border-radius:50%;flex:0 0 20px;display:grid;place-items:center;font-size:12px;font-weight:800;color:#fff}
+.seller .vf{color:var(--grn);flex:0 0 13px}
+.seller .rt{margin-left:auto;display:flex;align-items:center;gap:3px;color:var(--ink)}
+.seller .rt svg{color:var(--yel)}
+.card h3{font-size:14px;font-weight:700;letter-spacing:-.02em;line-height:1.3;margin:0 4px 6px}
+.price{margin:auto 4px 6px;display:flex;align-items:baseline;gap:8px}
+.price b{font-size:17px;font-weight:800;letter-spacing:-.03em;color:var(--deep)}
+.price s{font-size:13px;color:var(--soft)}
+.addrow{display:flex;align-items:center;gap:8px;margin:0 4px 4px}
+/* Add to basket. The edge is an INSET shadow, so thickening it on hover
+   changes nothing about the button's box — no reflow, no size jump. */
+.addb{flex:1;background:var(--yel);color:var(--deep);font-size:13.5px;font-weight:800;padding:10px;border-radius:var(--pill);text-align:center;
+  box-shadow:inset 0 0 0 0 var(--deep);
+  transition:background .2s var(--ease), box-shadow .2s var(--ease)}
+.addb:hover,.addb:focus-visible{background:#fff;box-shadow:inset 0 0 0 2px var(--deep)}
+.vat{font-size:12px;color:var(--grn);font-weight:700;margin:0 4px 8px}
+
+/* ---------- service cards ---------- */
+.svcs{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.svcs .svc{background:var(--white);border-radius:var(--r-l);padding:18px;display:flex;flex-direction:column;transition:.22s var(--ease)}
+.svcs .svc:hover{transform:translateY(-4px);box-shadow:var(--sh-h)}
+.svcs .svc .top{display:flex;align-items:center;gap:11px;margin-bottom:14px}
+.svcs .svc .av{width:44px;height:44px;flex:0 0 44px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:16px;background:var(--yel);color:var(--deep)}
+.svcs .svc h3{font-size:15.5px;font-weight:800;letter-spacing:-.02em;margin-bottom:1px}
+.svcs .svc .loc{font-size:12.5px;color:var(--soft)}
+.svcs .svc .from{font-size:17px;font-weight:800;letter-spacing:-.03em;color:var(--deep);margin-bottom:12px}
+.svcs .svc .from small{font-size:12.5px;font-weight:600;color:var(--soft)}
+.svcs .svc .slot{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--grn-d);background:var(--grn-soft);border-radius:var(--pill);padding:9px 14px;margin-top:auto}
+.svcs .svc .slot i{width:7px;height:7px;border-radius:50%;background:var(--grn);flex:0 0 7px}
+
+/* ---------- why band ---------- */
+.why{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.w{background:var(--white);border:1px solid var(--hair);border-radius:var(--r-l);padding:22px}
+.w .ic{width:42px;height:42px;border-radius:var(--r-s);background:var(--yel-soft);display:grid;place-items:center;color:var(--deep);margin-bottom:13px}
+.w b{display:block;font-size:15.5px;font-weight:800;letter-spacing:-.02em;margin-bottom:5px;color:var(--deep)}
+.w p{font-size:13.5px;color:var(--mid);line-height:1.5}
+
+/* ---------- impact ---------- */
+.impact{background:var(--deep);border-radius:var(--r-xl);padding:44px 48px;margin-top:34px;color:#fff;display:grid;grid-template-columns:1fr auto;gap:34px;align-items:center}
+.impact h2{font-size:clamp(23px,2.8vw,32px);margin-bottom:12px}
+.impact p{color:rgba(255,255,255,.78);font-size:16px;max-width:56ch}
+.impact .big b{display:block;font-size:60px;font-weight:800;letter-spacing:-.05em;color:var(--yel);line-height:1;text-align:center}
+.impact .big span{font-size:13px;color:rgba(255,255,255,.72);display:block;text-align:center;margin-top:4px}
+.imnote{font-size:12.5px;color:rgba(255,255,255,.55);font-style:italic;margin-top:12px}
+
+/* ---------- footer ---------- */
+.foot{margin-top:34px;padding-top:28px;border-top:1px solid var(--hair);display:grid;grid-template-columns:1.6fr repeat(4,1fr);gap:26px}
+.foot h4{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--soft);font-weight:800;margin-bottom:12px}
+.foot a{display:block;font-size:13.5px;padding:6px 0;min-height:24px;color:var(--mid);font-weight:600}
+.foot a:hover{color:var(--deep)}
+.foot p{font-size:13px;color:var(--soft);max-width:30ch;margin-top:10px;font-weight:500}
+.fbase{margin-top:22px;padding-top:16px;border-top:1px solid var(--hair);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--soft)}
+
+@media(max-width:1150px){
+  .tiles{grid-template-columns:repeat(4,1fr)}
+  .prods{grid-template-columns:repeat(3,1fr)}
+  .svcs,.why{grid-template-columns:repeat(2,1fr)}
+  .nav nav{display:none}
+}
+@media(max-width:820px){
+  .hero{grid-template-columns:1fr;padding:32px 26px}
+  .impact{grid-template-columns:1fr;padding:30px 26px}
+  .foot{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+  .frame{margin:10px;padding:10px;border-radius:var(--r-l)}
+  .inner{padding:10px}
+  .tiles{grid-template-columns:repeat(3,1fr)}
+  .prods{grid-template-columns:repeat(2,1fr)}
+  .svcs,.why,.foot{grid-template-columns:1fr}
+  .nav{flex-wrap:wrap;border-radius:var(--r-l);padding:12px}
+  .nsearch{order:3;width:100%;max-width:none}
+}
+
+/* ============================================================
+   BURGER MENU
+   Left of the logo, visible at every width. Below 1150px the
+   inline nav hides — without this there is no navigation at all
+   on a phone. Full sitemap, mirroring the footer.
+   ============================================================ */
+.burger{width:40px;height:40px;flex:0 0 40px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,255,255,.14);color:#fff;transition:.18s;cursor:pointer}
+.burger:hover{background:#fff;color:var(--deep)}
+.burger span{display:block;width:17px;height:1.9px;background:currentColor;border-radius:2px;
+  position:relative;transition:transform .26s var(--ease), opacity .18s}
+.burger span::before,.burger span::after{content:'';position:absolute;left:0;width:17px;height:1.9px;
+  background:currentColor;border-radius:2px;transition:transform .26s var(--ease)}
+.burger span::before{top:-5.5px}.burger span::after{top:5.5px}
+.burger[aria-expanded="true"] span{transform:rotate(45deg)}
+.burger[aria-expanded="true"] span::before{transform:translateY(5.5px) rotate(-90deg)}
+.burger[aria-expanded="true"] span::after{opacity:0}
+
+.scrim{position:fixed;inset:0;background:rgba(2,53,37,.42);backdrop-filter:blur(2px);
+  opacity:0;visibility:hidden;transition:opacity .26s var(--ease), visibility .26s;z-index:190}
+.scrim.on{opacity:1;visibility:visible}
+
+.drawer{position:fixed;top:0;left:0;bottom:0;width:min(380px,90vw);background:var(--cream);z-index:200;
+  transform:translateX(-100%);transition:transform .3s var(--ease);overflow-y:auto;
+  box-shadow:0 0 60px rgba(2,53,37,.3);display:flex;flex-direction:column}
+.drawer.on{transform:none}
+.dhead{background:var(--deep);color:#fff;padding:18px 20px;display:flex;align-items:center;gap:12px;
+  position:sticky;top:0;z-index:2}
+.dhead .glyph{width:32px;height:32px;border-radius:50%;background:var(--yel);display:grid;place-items:center;color:var(--deep);flex:0 0 32px}
+.dhead b{font-size:17px;font-weight:800;letter-spacing:-.04em;flex:1}
+.dclose{width:38px;height:38px;flex:0 0 38px;border-radius:50%;background:rgba(255,255,255,.14);
+  color:#fff;display:grid;place-items:center;font-size:19px;line-height:1;cursor:pointer;transition:.18s}
+.dclose:hover{background:#fff;color:var(--deep)}
+.dbody{padding:8px 12px 20px;flex:1}
+.dgroup{padding:14px 8px 6px}
+.dgroup h2{font-size:12px;letter-spacing:.15em;text-transform:uppercase;font-weight:800;
+  color:var(--soft);margin-bottom:4px;padding:0 10px}
+.drawer a.item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--r-s);
+  font-size:16px;font-weight:600;color:var(--ink);min-height:44px;transition:.15s}
+.drawer a.item:hover{background:var(--white)}
+.drawer a.item[aria-current="page"]{background:var(--yel);color:var(--deep);font-weight:800}
+.drawer a.item svg{flex:0 0 19px;color:var(--soft)}
+.drawer a.item[aria-current="page"] svg{color:var(--deep)}
+.dsep{height:1px;background:var(--hair);margin:8px 18px}
+.dfoot{padding:16px 20px 22px;border-top:1px solid var(--hair);background:var(--white)}
+.dfoot a{display:block;text-align:center;font-size:15px;font-weight:800;padding:13px;border-radius:var(--pill);min-height:44px}
+.dfoot .signin{background:var(--deep);color:#fff;margin-bottom:9px}
+.dfoot .sell{box-shadow:inset 0 0 0 1.5px var(--line);color:var(--ink)}
+.dfoot p{font-size:12.5px;color:var(--soft);text-align:center;margin-top:12px;font-weight:600}
+body.locked{overflow:hidden}
+@media (prefers-reduced-motion:reduce){.drawer,.scrim,.burger span,.burger span::before,.burger span::after{transition:none}}
+
+/* ============================================================
+   SESSION 4 — signed-in header, chat launcher, footer
+   New names are prefixed acct-, notif- and chat- so they cannot
+   collide with anything already in the sheet.
+   ============================================================ */
+
+/* only one of these two shows at a time */
+body:not(.signedin) .when-in{display:none!important}
+body.signedin .when-out{display:none!important}
+
+/* --- bell --- */
+.notif-btn{position:relative}
+.notif-btn .dot{position:absolute;top:-4px;right:-4px;min-width:19px;height:19px;
+  border-radius:var(--pill);background:var(--yel);color:var(--deep);font-size:12px;
+  font-weight:800;display:grid;place-items:center;padding:0 5px;
+  box-shadow:0 0 0 2px var(--deep)}
+
+/* --- avatar trigger --- */
+.acct-btn{display:flex;align-items:center;gap:8px;padding:4px 10px 4px 4px;
+  border-radius:var(--pill);background:rgba(255,255,255,.14);color:#fff;
+  transition:background .18s var(--ease)}
+.acct-btn:hover{background:#fff;color:var(--deep)}
+.acct-btn .av{width:30px;height:30px;flex:0 0 30px;border-radius:50%;background:var(--yel);
+  color:var(--deep);display:grid;place-items:center;font-weight:800;font-size:13px}
+.acct-btn .nm{font-size:14px;font-weight:700;max-width:9ch;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.acct-btn .cv{transition:transform .2s var(--ease);flex:0 0 12px}
+.acct-btn[aria-expanded="true"] .cv{transform:rotate(180deg)}
+@media(max-width:900px){.acct-btn .nm,.acct-btn .cv{display:none}
+  .acct-btn{padding:4px}}
+
+/* --- the two panels that hang off the nav --- */
+.pop{position:absolute;top:calc(100% + 10px);right:0;z-index:200;width:302px;
+  background:var(--white);color:var(--ink);border-radius:var(--r-l);
+  box-shadow:0 10px 44px rgba(2,53,37,.24);overflow:hidden;
+  opacity:0;transform:translateY(-6px);pointer-events:none;
+  transition:opacity .18s var(--ease),transform .18s var(--ease)}
+.pop.on{opacity:1;transform:none;pointer-events:auto}
+.pop h2{font-size:14px;font-weight:800;letter-spacing:-.01em;padding:15px 22px 11px}
+.pop .phead{display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--hair)}
+.pop .phead a{font-size:12.5px;font-weight:700;color:var(--deep);padding:15px 22px 11px;
+  text-decoration:underline;text-underline-offset:3px}
+.navend{position:relative}
+@media(max-width:560px){.pop{width:min(302px,calc(100vw - 32px));right:-8px}}
+
+/* notifications */
+.notif-list{max-height:340px;overflow:auto}
+.notif-item{display:flex;gap:11px;padding:13px 22px;align-items:flex-start;
+  border-bottom:1px solid var(--hair);transition:background .18s var(--ease)}
+.notif-item:hover,.notif-item:focus-visible{background:var(--cream)}
+.notif-item .ic{width:32px;height:32px;flex:0 0 32px;border-radius:50%;display:grid;
+  place-items:center;background:var(--grn-soft);color:var(--grn-d)}
+.notif-item.unread .ic{background:var(--yel-soft);color:var(--deep)}
+.notif-item b{display:block;font-size:13.5px;font-weight:700;line-height:1.35}
+.notif-item span{display:block;font-size:12.5px;color:var(--mid);margin-top:2px;line-height:1.45}
+.notif-item time{display:block;font-size:12px;color:var(--soft);margin-top:4px}
+.notif-item .new{flex:0 0 8px;width:8px;height:8px;border-radius:50%;background:var(--grn);
+  margin-top:12px}
+.pop .pfoot{padding:12px 22px;text-align:center}
+.pop .pfoot a{font-size:13px;font-weight:700;text-decoration:underline;
+  text-underline-offset:3px}
+
+/* account menu */
+.acct-who{display:flex;gap:11px;align-items:center;padding:15px 22px;
+  border-bottom:1px solid var(--hair)}
+.acct-who .av{width:40px;height:40px;flex:0 0 40px;border-radius:50%;background:var(--deep);
+  color:var(--yel);display:grid;place-items:center;font-weight:800;font-size:15px}
+.acct-who b{display:block;font-size:14.5px;font-weight:800}
+.acct-who span{display:block;font-size:12.5px;color:var(--mid);margin-top:1px}
+.acct-menu{padding:7px 0}
+.acct-menu a{display:flex;align-items:center;gap:11px;padding:10px 22px;font-size:14px;
+  font-weight:600;transition:background .18s var(--ease)}
+.acct-menu a:hover,.acct-menu a:focus-visible{background:var(--cream)}
+.acct-menu a svg{flex:0 0 17px;color:var(--mid)}
+.acct-menu .sep{height:1px;background:var(--hair);margin:7px 0}
+.acct-menu a.out{color:var(--deep);font-weight:700}
+.acct-menu .cnt{margin-left:auto;font-size:12px;font-weight:800;padding:2px 8px;
+  border-radius:var(--pill);background:var(--yel-soft);color:var(--deep)}
+
+/* --- chat launcher --- */
+.chat-btn{position:fixed;right:22px;bottom:22px;z-index:240;display:flex;align-items:center;
+  gap:10px;padding:14px 20px;border-radius:var(--pill);background:var(--deep);color:#fff;
+  font-size:15px;font-weight:700;box-shadow:0 8px 28px rgba(2,53,37,.34);
+  transition:background .2s var(--ease),box-shadow .2s var(--ease)}
+.chat-btn:hover,.chat-btn:focus-visible{background:var(--deep2);
+  box-shadow:0 10px 34px rgba(2,53,37,.44)}
+.chat-btn:focus-visible{outline:3px solid var(--deep);outline-offset:3px}
+.chat-btn .lbl{white-space:nowrap}
+@media(max-width:560px){.chat-btn{right:16px;bottom:16px;padding:14px}
+  .chat-btn .lbl{display:none}}
+
+.chat-panel{position:fixed;right:22px;bottom:22px;z-index:250;width:min(372px,calc(100vw - 32px));
+  max-height:min(560px,calc(100vh - 40px));background:var(--white);border-radius:var(--r-xl);
+  box-shadow:0 18px 60px rgba(2,53,37,.34);display:flex;flex-direction:column;overflow:hidden;
+  opacity:0;transform:translateY(10px) scale(.98);pointer-events:none;
+  transition:opacity .2s var(--ease),transform .2s var(--ease)}
+.chat-panel.on{opacity:1;transform:none;pointer-events:auto}
+@media(max-width:560px){.chat-panel{right:16px;left:16px;bottom:16px;width:auto}}
+.chat-head{background:var(--deep);color:#fff;padding:17px 18px;display:flex;
+  align-items:center;gap:11px}
+.chat-head :where(a,button):focus-visible{outline-color:var(--yel)}
+.chat-head .av{width:34px;height:34px;flex:0 0 34px;border-radius:50%;background:var(--yel);
+  color:var(--deep);display:grid;place-items:center}
+.chat-head b{font-size:15px;font-weight:800;display:block}
+.chat-head span{font-size:12.5px;color:rgba(255,255,255,.78);display:block;margin-top:1px}
+.chat-close{margin-left:auto;width:32px;height:32px;border-radius:50%;
+  background:rgba(255,255,255,.16);color:#fff;display:grid;place-items:center;font-size:19px;
+  line-height:1;transition:background .18s var(--ease)}
+.chat-close:hover{background:#fff;color:var(--deep)}
+.chat-body{padding:17px;overflow:auto;flex:1;display:flex;flex-direction:column;gap:12px}
+.chat-msg{max-width:86%;font-size:14px;line-height:1.55;padding:11px 14px;
+  border-radius:var(--r-m)}
+.chat-msg.bot{background:var(--cream);color:var(--ink);border-bottom-left-radius:6px}
+.chat-msg.me{background:var(--deep);color:#fff;align-self:flex-end;
+  border-bottom-right-radius:6px}
+.chat-sugs{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
+.chat-sugs button{font-size:13px;font-weight:700;padding:9px 14px;border-radius:var(--pill);
+  color:var(--deep);box-shadow:inset 0 0 0 1px var(--line);
+  transition:box-shadow .18s var(--ease),background .18s var(--ease)}
+.chat-sugs button:hover,.chat-sugs button:focus-visible{background:var(--cream);
+  box-shadow:inset 0 0 0 2px var(--deep)}
+.chat-foot{border-top:1px solid var(--hair);padding:12px 14px}
+.chat-form{display:flex;gap:9px;align-items:center}
+.chat-form input{flex:1;min-width:0;font-family:inherit;font-size:14.5px;padding:12px 14px;
+  border-radius:var(--pill);background:var(--cream);color:var(--ink);border:0;
+  box-shadow:inset 0 0 0 1px var(--line)}
+.chat-form input:focus-visible{outline:3px solid var(--deep);outline-offset:2px}
+.chat-send{width:42px;height:42px;flex:0 0 42px;border-radius:50%;background:var(--yel);
+  color:var(--deep);display:grid;place-items:center;
+  transition:background .2s var(--ease),box-shadow .2s var(--ease)}
+.chat-send:hover,.chat-send:focus-visible{background:#fff;box-shadow:inset 0 0 0 2px var(--deep)}
+.chat-note{font-size:12px;color:var(--soft);text-align:center;margin-top:9px;line-height:1.45}
+
+/* prototype-only signed-in switch, sits beside the other state toggles */
+.authbar{position:fixed;left:18px;bottom:18px;z-index:260;display:flex;gap:7px;
+  align-items:center;background:var(--white);border-radius:var(--pill);padding:7px 9px 7px 14px;
+  box-shadow:0 6px 22px rgba(2,53,37,.2);font-size:12.5px;font-weight:700;color:var(--mid)}
+.authbar button{font-size:12.5px;font-weight:800;padding:7px 13px;border-radius:var(--pill);
+  color:var(--deep);box-shadow:inset 0 0 0 1px var(--line);
+  transition:background .18s var(--ease),box-shadow .18s var(--ease)}
+.authbar button[aria-pressed="true"]{background:var(--deep);color:#fff}
+@media(max-width:700px){.authbar{display:none}}
+
+.signin-lnk{font-size:14px;font-weight:700;color:#fff;padding:10px 16px;border-radius:var(--pill);box-shadow:inset 0 0 0 1px rgba(255,255,255,.42);transition:background .18s var(--ease),color .18s var(--ease)}
+.signin-lnk:hover,.signin-lnk:focus-visible{background:#fff;color:var(--deep)}
+
+/* .nav nav{display:flex} was catching this menu and laying it out in a row.
+   The same collision family as .tile.svc — scope it explicitly. */
+.nav .acct-menu{display:flex;flex-direction:column;gap:0;padding:7px 0}
+.nav .acct-menu a{width:100%}
+
+/* 320px reflow (WCAG 1.4.10). At two columns the cards were still wider than a
+   small phone, pushing the whole page sideways. Below 400px go to one column.
+   Pre-existing on the landing and shop pages, found in the session 4 sweep. */
+@media(max-width:400px){
+  .prods{grid-template-columns:1fr}
+  .chips{overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
+/* a standalone link in a panel footer is a target, not prose */
+.pop .pfoot a{display:inline-block;padding:5px 8px}
+
+/* ---- account menu spacing, take two -----------------------------------
+   `.nav nav a{padding:4px 0}` has specificity (0,1,2) and was beating
+   `.acct-menu a` (0,1,1), so the padding set earlier never applied. Scoping
+   to `.nav .acct-menu a` (0,2,1) wins. Geometry now matches the burger
+   drawer: container 12px, row 20px, so icons sit 32px from the panel edge.
+   ---------------------------------------------------------------------- */
+.pop{width:330px}
+@media(max-width:560px){.pop{width:min(330px,calc(100vw - 32px))}}
+
+.nav .acct-menu{display:flex;flex-direction:column;gap:2px;padding:8px 12px}
+.nav .acct-menu a{
+  display:flex;align-items:center;gap:12px;width:100%;min-height:44px;
+  padding:11px 20px;border-radius:var(--r-s);
+  font-size:14.5px;font-weight:600;opacity:1;border-bottom:0;
+  transition:background .18s var(--ease)}
+.nav .acct-menu a:hover,.nav .acct-menu a:focus-visible{
+  background:var(--cream);opacity:1;border-bottom-color:transparent}
+.nav .acct-menu a svg{flex:0 0 19px;color:var(--soft)}
+.nav .acct-menu .sep{height:1px;background:var(--hair);margin:7px 20px}
+.nav .acct-menu .cnt{margin-left:auto}
+
+/* everything else in the panels lines up on the same 32px */
+.pop h2{padding:16px 32px 12px}
+.pop .phead a{padding:16px 32px 12px}
+.acct-who{padding:16px 32px}
+.notif-item{padding:14px 32px}
+.pop .pfoot{padding:13px 32px}
+
+/* ---- the Sell band that goes on the landing page ---- */
+.sell-band{margin-top:34px;background:var(--deep);border-radius:var(--r-xl);
+  padding:32px 30px;color:#fff;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+  gap:28px;align-items:center}
+@media(max-width:860px){.sell-band{grid-template-columns:1fr;padding:26px 22px}}
+.sell-band :where(a,button):focus-visible{outline-color:var(--yel)}
+.sell-band h2{font-size:clamp(21px,2.6vw,30px);color:#fff;line-height:1.12}
+.sell-band>div>p{margin-top:11px;font-size:16px;color:rgba(255,255,255,.82);max-width:48ch;
+  line-height:1.6}
+.sell-band .rates{display:flex;gap:26px;margin-top:18px}
+.sell-band .rates b{display:block;font-size:22px;font-weight:800;color:var(--yel);
+  letter-spacing:-.03em}
+.sell-band .rates span{display:block;font-size:13px;color:rgba(255,255,255,.76);margin-top:2px}
+.sell-doors{display:flex;flex-direction:column;gap:12px}
+.sell-doors a{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.1);
+  border-radius:var(--r-l);padding:17px 20px;color:#fff;
+  transition:background .2s var(--ease),color .2s var(--ease)}
+.sell-doors a:hover,.sell-doors a:focus-visible{background:#fff;color:var(--deep)}
+.sell-doors .ic{width:40px;height:40px;flex:0 0 40px;border-radius:50%;background:var(--yel);
+  color:var(--deep);display:grid;place-items:center}
+.sell-doors b{display:block;font-size:16px;font-weight:800}
+.sell-doors span{display:block;font-size:13.5px;opacity:.8;margin-top:2px}
+.sell-doors .arw{margin-left:auto;flex:0 0 16px;transition:transform .22s var(--ease)}
+.sell-doors a:hover .arw{transform:translateX(3px)}
+.sell-lnk{font-size:14px;font-weight:800;color:var(--deep);background:var(--yel);padding:9px 16px;border-radius:var(--pill);white-space:nowrap;transition:background .18s var(--ease),box-shadow .18s var(--ease)}
+.sell-lnk:hover,.sell-lnk:focus-visible{background:#fff;box-shadow:inset 0 0 0 2px var(--deep)}
+.sell-lnk[aria-current="page"]{background:#fff;box-shadow:inset 0 0 0 2px var(--deep)}
+@media(max-width:1150px){.sell-lnk{display:none}}
+
+/* ---- top bar must not outgrow itself ---------------------------------
+   `.nsearch` was a fixed 330px and `.nav nav` never shrank, so adding the
+   Start selling pill pushed the account button out past the rounded end of
+   the bar above 1200px. Let the search absorb the slack, and stop anything
+   in the bar overflowing its container.
+   --------------------------------------------------------------------- */
+.nav{min-width:0;flex-wrap:nowrap}
+.nav>*{min-width:0}
+.nav nav{flex:0 0 auto;min-width:0}
+.nsearch{flex:1 1 180px;width:auto;min-width:120px;max-width:330px}
+.navend{flex:0 0 auto;margin-left:auto}
+.acct-btn{flex:0 0 auto}
+.acct-btn .nm{max-width:8ch}
+@media(max-width:1440px){.nav{gap:20px}}
+@media(max-width:1250px){.acct-btn .nm{display:none}.acct-btn{padding:4px}}
+@media(max-width:1150px){.nav{flex-wrap:wrap}}
+
+/* Shops lives in the burger; Help then Deals step out as the bar narrows */
+@media(min-width:0px){.nav nav a:nth-child(3){display:none}}   /* Shops — burger only */
+@media(max-width:1400px){.nav nav a:nth-child(5){display:none}} /* Help */
+@media(max-width:1300px){.nav nav a:nth-child(4){display:none}} /* Deals */
+
+/* On a phone the header panels become sheets pinned to the viewport. As
+   absolutely-positioned boxes they were still laid out while closed, which
+   pushed the document wider than the screen and broke 1.4.10 reflow. */
+@media(max-width:700px){
+  .pop{position:fixed;left:12px;right:12px;top:auto;width:auto;max-width:none}
+  .pop:not(.on){visibility:hidden}
+}
+
+/* my flex override killed the small-screen rule that put the search on its own
+   row, so .navend stayed wider than a phone. Put it back, after the override. */
+@media(max-width:1150px){
+  .navend{flex-wrap:wrap;width:100%;margin-left:0}
+  .nsearch{order:3;flex:1 1 100%;width:100%;min-width:0;max-width:none}
+}
+/* and give the search room to shrink on a wide screen, so nothing is pushed out */
+@media(min-width:1151px){
+  .nav{gap:18px}
+  .nsearch{flex:1 1 150px;min-width:140px}
+}
+
+/* ============================================================
+   SEASONAL CAMPAIGNS — sea-*
+   A scroll row that looks like a band when it holds one card.
+   User-driven only: no autoplay, so no pause control needed and
+   nothing competes with the hero for attention.
+   ============================================================ */
+.sea{margin-top:22px}
+.sea-head{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.sea-head h2{font-size:clamp(18px,2.1vw,23px)}
+.sea-ctl{margin-left:auto;display:flex;gap:8px}
+/* a class with display beats the UA [hidden] rule — say it explicitly */
+.sea-ctl[hidden],.sea-card[hidden]{display:none}
+.sea-ctl button{width:40px;height:40px;border-radius:50%;background:var(--white);
+  color:var(--deep);display:grid;place-items:center;box-shadow:var(--sh);
+  transition:background .18s var(--ease),box-shadow .18s var(--ease)}
+.sea-ctl button:hover:not([disabled]){background:var(--yel)}
+.sea-ctl button[disabled]{color:var(--line);cursor:not-allowed;box-shadow:none;
+  background:var(--hair)}
+
+.sea-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;padding-bottom:4px;scrollbar-width:thin}
+.sea-track:focus-visible{outline:3px solid var(--deep);outline-offset:4px;border-radius:var(--r-l)}
+.sea-card{position:relative;flex:0 0 100%;scroll-snap-align:start;
+  background:var(--white);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh);
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+  transition:box-shadow .2s var(--ease)}
+.sea-card:hover,.sea-card:focus-within{box-shadow:var(--sh-h)}
+.sea.multi .sea-card{flex:0 0 min(100%,760px)}
+@media(max-width:760px){.sea-card{grid-template-columns:1fr}}
+
+.sea-txt{padding:30px 32px;display:flex;flex-direction:column;justify-content:center}
+@media(max-width:760px){.sea-txt{padding:24px 22px;order:2}}
+.sea-when{display:inline-block;align-self:flex-start;font-size:12.5px;font-weight:800;
+  letter-spacing:.03em;text-transform:uppercase;padding:6px 12px;border-radius:var(--pill);
+  background:var(--yel-soft);color:var(--deep);margin-bottom:13px}
+.sea-txt h3{font-size:clamp(20px,2.4vw,27px);line-height:1.15;letter-spacing:-.035em}
+.sea-txt h3 a{color:var(--deep)}
+/* one link per card, stretched over the whole card — same pattern as the
+   product cards, so the Add-style controls stay reachable if we add any */
+.sea-txt h3 a::after{content:"";position:absolute;inset:0;z-index:1}
+.sea-txt h3 a:focus-visible{outline:none}
+.sea-card:has(h3 a:focus-visible){outline:3px solid var(--deep);outline-offset:3px}
+.sea-txt p{margin-top:10px;font-size:15.5px;line-height:1.6;color:var(--mid);max-width:44ch}
+.sea-go{margin-top:18px;display:inline-flex;align-items:center;gap:9px;align-self:flex-start;
+  font-size:15px;font-weight:800;color:var(--deep);padding:12px 20px;border-radius:var(--pill);
+  background:var(--yel);transition:background .2s var(--ease),box-shadow .2s var(--ease)}
+.sea-card:hover .sea-go{background:#fff;box-shadow:inset 0 0 0 2px var(--deep)}
+
+.sea-img{position:relative;min-height:230px}
+@media(max-width:760px){.sea-img{min-height:170px;order:1}}
+.sea-img .grain{position:absolute;inset:0;opacity:.2;filter:url(#gn)}
+
+@media (prefers-reduced-motion:reduce){.sea-track{scroll-behavior:auto}}
+
+/* prototype-only switch, stacked above the signed-in switch */
+.seasonbar{position:fixed;left:18px;bottom:70px;z-index:260;display:flex;gap:7px;
+  align-items:center;background:var(--white);border-radius:var(--pill);
+  padding:7px 9px 7px 14px;box-shadow:0 6px 22px rgba(2,53,37,.2);
+  font-size:12.5px;font-weight:700;color:var(--mid)}
+.seasonbar button{font-size:12.5px;font-weight:800;padding:7px 13px;border-radius:var(--pill);
+  color:var(--deep);box-shadow:inset 0 0 0 1px var(--line);
+  transition:background .18s var(--ease),box-shadow .18s var(--ease)}
+.seasonbar button[aria-pressed="true"]{background:var(--deep);color:#fff}
+@media(max-width:700px){.seasonbar{display:none}}
+
+/* ============================================================
+   FULL-WIDTH LAYOUT — the white app frame is gone.
+   It was an Instacart-reference device and cost ~1160px of empty
+   ground on a large monitor, plus 80px of inset on every page.
+   Removing it also closes the `nested-cards` deviation: the stack
+   is now container → card, two levels, which is what the rule says.
+
+   Text keeps its own measure (the `max-width:NNch` rules already on
+   paragraphs), so nothing stretches past a readable line length.
+   ============================================================ */
+.frame{max-width:none;margin:0;background:none;border-radius:0;padding:0;box-shadow:none}
+.inner{background:none;border-radius:0;max-width:1808px;margin:0 auto;padding:22px 24px 0}
+@media(max-width:560px){
+  .frame{margin:0;padding:0;border-radius:0}
+  .inner{padding:12px 12px 0}
+}
+
+/* the page ground is now the cream itself */
+body{background:var(--cream)}
+
+/* The wide-screen column bumps that used to live here are gone. The
+   teaser rows scroll now (see TEASER ROWS below) and the shop grid keeps
+   its own ramp, so nothing on these pages wants extra columns. */
+
+/* the nav pill spans the container edge to edge */
+.navwrap{margin-left:-24px;margin-right:-24px;padding-left:24px;padding-right:24px}
+@media(max-width:560px){.navwrap{margin-left:-12px;margin-right:-12px;
+  padding-left:12px;padding-right:12px}}
+
+/* the footer needs a little air now that nothing frames it */
+.fbase{padding-bottom:26px}
+
+/* ============================================================
+   TEASER ROWS — one row, always full, never orphaned.
+   A grid with five cards in a six-column track leaves a hole at
+   the end. These rows scroll instead: the card keeps the width it
+   was designed at, the row shows as many as the screen fits, and
+   the part-visible card at the edge is the affordance. Same
+   mechanics as the seasonal band — user-driven, nothing autoplays.
+   ============================================================ */
+.row-scroll{display:flex!important;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;padding-bottom:6px;scrollbar-width:thin;
+  scrollbar-color:var(--line) transparent}
+.row-scroll::-webkit-scrollbar{height:8px}
+.row-scroll::-webkit-scrollbar-thumb{background:var(--line);border-radius:var(--pill)}
+.row-scroll::-webkit-scrollbar-track{background:transparent}
+.row-scroll>*{flex:0 0 clamp(210px,17.5vw,262px);scroll-snap-align:start}
+.row-scroll.svcs>*{flex:0 0 clamp(250px,22vw,318px)}
+@media(max-width:560px){
+  .row-scroll>*{flex:0 0 78vw}
+  .row-scroll.svcs>*{flex:0 0 82vw}
+}
+@media (prefers-reduced-motion:reduce){.row-scroll{scroll-behavior:auto}}
+
+/* the wide-screen column bumps only apply to real grids now */
+@media(min-width:1500px){
+  .row-scroll{grid-template-columns:none}
+}
+
+/* the hero copy is measure-capped, so a wider column just adds empty
+   green. Give the type room instead, and hand the surplus to the photo. */
+@media(min-width:1500px){
+  .hero{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);padding:60px 56px;gap:40px}
+  .hero h1{font-size:60px}
+  .hero p{font-size:17.5px;max-width:46ch}
+}
+@media(min-width:1900px){
+  .hero h1{font-size:66px}
+}
+/* same gap, same cause, on the seasonal card */
+@media(min-width:1500px){
+  .sea-card{grid-template-columns:minmax(0,.95fr) minmax(0,1.25fr)}
+  .sea-txt{padding:38px 44px}
+  .sea-txt h3{font-size:32px}
+  .sea-txt p{font-size:16.5px;max-width:46ch}
+}
+
+/* The grain overlay is an SVG filter, and an SVG filter's default region is
+   -10%/+120% of the element — so on a 1000px-wide seasonal image the noise
+   painted 100px out to the left, over the white text panel. Clip it. */
+.sea-img{overflow:hidden}
+/* at 1760px wide a 230px band is a letterbox — give it height back */
+@media(min-width:1500px){.sea-img{min-height:330px}}
+
+/* ============================================================
+   VIDEO HERO  (16 Aug 2026)
+   Replaces the deep-green box + photograph. Full-bleed, one screen.
+   ============================================================ */
+.frame{overflow-x:clip}          /* NOT hidden — hidden breaks position:sticky */
+
+.hero{
+  position:relative;
+  /* break out of .inner's padding and out of the 1808px container */
+  width:100vw;
+  margin-left:calc(50% - 50vw);
+  margin-right:calc(50% - 50vw);
+  margin-top:0;
+  border-radius:0;
+  padding:0 var(--pad) 6vh;
+  /* the sticky bar is 97px on a desktop but wraps to ~200px below 1150px,
+     so a hard-coded offset either leaves a gap or overshoots. A tiny script
+     publishes the measured height as --navh; the fallback keeps it sane if
+     the script never runs. */
+  /* SCROLL CUE. Not a chevron — the next section peeks instead.
+     The hero gives back 74px so the "On right now" heading and the top edge
+     of the first campaign card sit just inside the fold. A cropped thing is
+     a stronger signal that there is more than an arrow is, and it costs no
+     furniture. */
+  min-height:calc(100svh - var(--navh, 100px) - 106px);
+  display:grid;
+  /* the old hero was a two-column grid (copy | photograph). Without resetting
+     the template the copy stayed pinned in the first column and read as
+     left-aligned inside a centred block. */
+  grid-template-columns:1fr;
+  gap:0;
+  place-items:center;
+  text-align:center;
+  background:var(--deep);
+  color:#fff;
+  overflow:hidden;
+  isolation:isolate}
+@media(max-width:560px){.hero{padding:0 16px 5vh}}
+
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-bg video,.hero-bg img.poster{position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-bg img.poster{z-index:0}
+.hero-bg video{z-index:1}
+
+
+
+.hero>.hero-in{position:relative;z-index:2;max-width:900px}
+/* the type carries a shadow rather than the page carrying an overlay: it
+   lifts the letterforms off the moving picture without greying it out */
+.hero h1{font-size:clamp(38px,6vw,78px);max-width:none;margin-bottom:0;
+  letter-spacing:-.042em;line-height:1.02;color:#fff;
+  text-shadow:0 2px 18px rgba(0,0,0,.55), 0 1px 3px rgba(0,0,0,.45)}
+.hero p{margin:24px auto 0;font-size:clamp(16.5px,1.3vw,19.5px);line-height:1.55;
+  color:#fff;max-width:52ch;
+  text-shadow:0 2px 14px rgba(0,0,0,.6), 0 1px 3px rgba(0,0,0,.5)}
+.hbtns{justify-content:center;margin-top:34px;gap:14px}
+
+/* Book a service, on a moving ground: a firmer edge than the old .45,
+   and it fills white on hover instead of just thickening its outline */
+.hero .btn-o{box-shadow:inset 0 0 0 2px rgba(255,255,255,.85);color:#fff;
+  background:transparent;
+  transition:background .2s var(--ease),color .2s var(--ease),box-shadow .2s var(--ease)}
+.hero .btn-o:hover,.hero .btn-o:focus-visible{background:#fff;color:var(--deep);
+  box-shadow:inset 0 0 0 0 #fff}
+
+/* --- pause control: an obligation, not decoration (WCAG 2.2.2) --- */
+.vplay{position:absolute;right:22px;bottom:22px;z-index:4;
+  width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(2,53,37,.86);color:#fff;
+  box-shadow:0 2px 10px rgba(0,0,0,.34), inset 0 0 0 1px rgba(255,255,255,.55);
+  transition:background .18s var(--ease),color .18s var(--ease)}
+.vplay:hover{background:#fff;color:var(--deep)}
+.vplay .ic-pause{display:block}.vplay .ic-play{display:none}
+.vplay[aria-pressed="true"] .ic-pause{display:none}
+.vplay[aria-pressed="true"] .ic-play{display:block}
+
+@media (prefers-reduced-motion:reduce){
+  .hero-bg video{display:none}
+  .vplay{display:none}
+}
+
+/* ============================================================
+   WHITE PAGE  (16 Aug 2026)
+   Cream ground -> pure white, nav band included.
+   ============================================================ */
+body{background:var(--white)}
+.navwrap{background:var(--white)}
+.navwrap.stuck{box-shadow:0 10px 26px -8px rgba(2,53,37,.16)}
+
+/* Every card here is white and used the cream ground for its edge. On a
+   white page that edge disappears, so each surface gets a hairline of its
+   own. --hair is 1.14:1 and decorative by design — correct for a card
+   boundary, wrong for a control, which is what --line is for. */
+:where(.tile,.box,.card,.svcs .svc,.w,.sea-card,.pd-card,.switch,.filters,
+       .toolbar,.empty,.how,.mode,.sl-step,.sl-list,.sl-faq,.pd-buy,.pd-panel,
+       .svc){box-shadow:var(--sh), inset 0 0 0 1px var(--hair)}
+:where(.card,.svcs .svc,.tile,.sea-card,.pd-card):hover{
+  box-shadow:var(--sh-h), inset 0 0 0 1px var(--hair)}
+
+/* the few places that painted cream as a *surface* rather than as the page */
+.cimg,.heroart{background:#EFEEE6}
+
+/* ---- no darkening at all -----------------------------------------------
+   Riccardo's call, made twice and with a reference shot: the clip plays
+   ungraded, exactly as in Layout D. No overlay, no filter, no patch.
+
+   The cost, recorded so it is a decision rather than an oversight. Sampling
+   only the pixels the glyphs actually paint (render with text, render
+   without, diff for the letterforms, read the ground beneath them):
+
+       viewport   worst px   1st pctile   median
+          1920     1.56:1      1.68:1     4.84:1
+          1440     1.45:1      1.50:1     4.49:1
+           375     1.37:1      1.44:1     4.24:1
+
+   The median is why it reads fine — about half the type sits over the
+   tablet, which is dark. The 1st percentile is the part that fails: the
+   letters that land on the bedding and the jeans. Floors are 3:1 for the
+   headline and 4.5:1 for the lede, so this is below both.
+
+   Two ways to have this look AND clear the floors, neither of which is a
+   gradient — see PROJECT_CONTEXT §25.
+   ------------------------------------------------------------------------ */
+.hero-bg video,.hero-bg img.poster{filter:none}
+
+/* ============================================================
+   APPLE-INFLUENCED TILES  (16 Aug 2026)
+   Light neutral ground, borderless white cards, more air.
+   ============================================================ */
+:root{--ground:#F5F5F7}
+
+body{background:var(--ground)}
+.navwrap{background:var(--ground)}
+
+/* the hairlines added for the white page are no longer needed — the ground
+   separates the cards on its own, which is the point of the reference */
+:where(.tile,.box,.card,.svcs .svc,.w,.sea-card,.pd-card,.switch,.filters,
+       .toolbar,.empty,.how,.mode,.sl-step,.sl-list,.sl-faq,.pd-buy,.pd-panel,
+       .svc){box-shadow:none;background:var(--white)}
+:where(.card,.svcs .svc,.tile,.sea-card,.pd-card):hover{box-shadow:0 6px 22px rgba(0,0,0,.06)}
+
+/* rounder, airier tiles */
+.card{border-radius:18px;padding:16px 16px 18px}
+.cimg{border-radius:12px;aspect-ratio:1/1;margin-bottom:16px;background:#FAFAFB}
+.sea-card,.tile,.w,.svcs .svc{border-radius:18px}
+.tile{padding:22px 12px}
+.svcs .svc{padding:20px}
+
+/* type inside a tile: quiet seller line, strong title, price with air */
+.card .seller{font-size:12.5px;font-weight:600;color:var(--soft);margin-bottom:8px}
+.card .seller .rt{font-weight:600}
+.card h3{font-size:15.5px;font-weight:700;line-height:1.32;color:var(--ink);
+  margin-bottom:14px;min-height:2.6em}
+.card .price{margin-top:auto}
+.card .price b{font-size:17px;font-weight:600;letter-spacing:0;color:var(--ink)}
+.card .vat{margin-top:4px}
+.card .addb{margin-top:16px;border-radius:var(--pill)}
+/* the discount flag becomes a small eyebrow rather than a sticker on the art */
+.card .sale{left:12px;top:12px;border-radius:6px;font-size:12px;padding:4px 8px}
+
+/* ---- section headings, two-tone ----------------------------------------
+   The reference sets a short statement in near-black and a descriptor in
+   grey on the same line, at the same size. It does a lot of work for very
+   little: the row gets a name AND a reason to exist. */
+.shead h2 .lead{color:var(--ink)}
+.shead h2 .sub{color:#86868B;font-weight:800}
+.shead h2{font-size:clamp(21px,2.3vw,30px);letter-spacing:-.03em}
+.shead{align-items:baseline;gap:18px;margin-bottom:20px}
+.shead .more,.shead .all{color:var(--soft)}
+
+/* ============================================================
+   PURE WHITE GROUND  (16 Aug 2026, final)
+   Riccardo asked for white twice. The light grey came from the Apple
+   reference, where a grey ground is what lets white cards sit borderless.
+   On a white ground they need an edge of their own or they dissolve — so
+   the hairline comes back, kept as light as it can be while still reading.
+   ============================================================ */
+:root{--ground:#FFFFFF}
+body,.navwrap{background:#FFFFFF}
+:where(.tile,.box,.card,.svcs .svc,.w,.sea-card,.pd-card,.switch,.filters,
+       .toolbar,.empty,.how,.mode,.sl-step,.sl-list,.sl-faq,.pd-buy,.pd-panel,
+       .svc){box-shadow:inset 0 0 0 1px #EAEAEC}
+:where(.card,.svcs .svc,.tile,.sea-card,.pd-card):hover{
+  box-shadow:inset 0 0 0 1px #E2E2E5, 0 6px 22px rgba(0,0,0,.07)}
+.cimg{background:#F7F7F8}
+
+/* ============================================================
+   GROUND + TWO COMPLIANCE FIXES  (16 Aug 2026, final)
+
+   Ground back to the light neutral grey. This is a READABILITY choice, not
+   an accessibility one — a card boundary is decoration, so neither white nor
+   grey passes or fails anything. Grey simply separates the cards without
+   needing a border, which is why the reference uses it. One token to flip.
+
+   Two things the review DID turn up, both fixed here:
+
+   1. The yellow button's fill is 1.43:1 against a white card. Whether 1.4.11
+      demands 3:1 for a filled button that already carries a high-contrast
+      label is genuinely arguable — so stop arguing and give it a boundary.
+      The deep-green hairline is 10.76:1 and is the `.on-light` treatment the
+      tokens already specify for light grounds. The page colour never
+      affected this, because the card under the button is white either way.
+
+   2. The section descriptor was #86868B, from the reference's palette —
+      3.62:1 on white. It clears 3:1 only because it is bold and ≥18.66px,
+      i.e. it counts as large text. That is too fine a margin to rest on if
+      the size ever drops. #6E6E73 is 5.07:1 and passes at any size.
+   ============================================================ */
+:root{--ground:#F5F5F7}
+body,.navwrap{background:var(--ground)}
+
+/* on grey the cards separate on their own — no border needed */
+:where(.tile,.box,.card,.svcs .svc,.w,.sea-card,.pd-card,.switch,.filters,
+       .toolbar,.empty,.how,.mode,.sl-step,.sl-list,.sl-faq,.pd-buy,.pd-panel,
+       .svc){box-shadow:none;background:var(--white)}
+:where(.card,.svcs .svc,.tile,.sea-card,.pd-card):hover{
+  box-shadow:0 6px 22px rgba(0,0,0,.07)}
+
+/* 1.4.11 — give every filled action a boundary of its own */
+.addb,.buy,.bookb{box-shadow:inset 0 0 0 1px rgba(2,53,37,.9)}
+
+/* 1.4.3 — descriptor that passes at any size, not only as large text */
+.shead h2 .sub{color:#6E6E73}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="gn"><feTurbulence type="fractalNoise" baseFrequency=".82" numOctaves="4"/><feColorMatrix type="saturate" values="0"/></filter>
+  <symbol id="cart" viewBox="0 0 24 24" fill="none"><path d="M3.4 4.2h2l1 2.6M6.4 6.8h14l-2.2 8H8.6z" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="18.4" r="1.6" fill="currentColor"/><circle cx="16.4" cy="18.4" r="1.6" fill="currentColor"/></symbol>
+  <symbol id="heart" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.4-7-9.3A4 4 0 0112 8a4 4 0 017 2.7C19 15.6 12 20 12 20z" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="truck" viewBox="0 0 24 24" fill="none"><path d="M2 7h11v9H2zM13 10h4l3 3v3h-7z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><circle cx="6" cy="18" r="1.7" stroke="currentColor" stroke-width="1.9"/><circle cx="17" cy="18" r="1.7" stroke="currentColor" stroke-width="1.9"/></symbol>
+  <symbol id="star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1z"/></symbol>
+  <symbol id="check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M8 12.4l2.6 2.6L16.2 9" stroke="#fff" stroke-width="2.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="arr" viewBox="0 0 24 24" fill="none"><path d="M6 18L18 6M9 6h9v9" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to main content</a>
+
+<div class="frame">
+<div class="inner">
+
+  <!-- nav (sticky) -->
+  <div class="navwrap">
+  <div class="nav">
+      <button class="burger" id="burger" aria-expanded="false" aria-controls="drawer" aria-label="Open menu"><span></span></button>
+    <a href="index.html" class="brand" aria-label="Shopziexpress home">
+      <span class="glyph"><svg width="18" height="18"><use href="#cart"/></svg></span>
+      <b>Shopziexpress</b>
+    </a>
+    <nav aria-label="Main"><a href="shop.html">Shop</a><a href="services.html">Services</a><a href="#">Shops</a><a href="#">Deals</a><a href="#">Help</a></nav>
+    <div class="navend">
+      <label class="nsearch">
+        <span class="sr-only">Search products, services and shops</span>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" style="color:var(--soft)"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.3-4.3"/></svg>
+        <input type="search" placeholder="Kente, shea butter…">
+      </label>
+      <a href="sell.html" class="sell-lnk">Start selling</a>
+      <a href="#" class="circ when-out" aria-label="Basket, 2 items"><svg width="19" height="19"><use href="#cart"/></svg><span class="n">2</span></a>
+      <a href="#" class="signin-lnk when-out">Sign in</a>
+      <a href="#" class="circ when-in" aria-label="Basket, 2 items"><svg width="19" height="19"><use href="#cart"/></svg><span class="n">2</span></a>
+      <button class="circ notif-btn when-in" id="notifBtn" aria-expanded="false"
+              aria-controls="notifPop" aria-label="Notifications, 3 unread">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 15V10a6 6 0 1 0-12 0v5l-1.6 2.6h15.2z"/><path d="M10 19.4a2.2 2.2 0 0 0 4 0"/>
+        </svg><span class="dot" aria-hidden="true">3</span></button>
+      <button class="acct-btn when-in" id="acctBtn" aria-expanded="false" aria-controls="acctPop">
+        <span class="av" aria-hidden="true">RP</span>
+        <span class="nm">Riccardo</span>
+        <svg class="cv" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 9l6 6 6-6"/></svg>
+        <span class="sr-only">Your account</span>
+      </button>
+
+      <div class="pop" id="notifPop" role="region" aria-labelledby="notifTitle">
+        <div class="phead"><h2 id="notifTitle">Notifications</h2><a href="#">Mark all read</a></div>
+        <div class="notif-list">
+          <a class="notif-item unread" href="#">
+            <span class="ic" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h12v9H3zM15 10h3.5l2.5 3v3h-6"/><circle cx="7" cy="18" r="1.7"/><circle cx="17" cy="18" r="1.7"/></svg></span>
+            <span><b>Your kente is on its way</b>
+              <span>Offeibia posted your order. Tracking added.</span>
+              <time datetime="2026-08-16">2 hours ago</time></span>
+            <span class="new" aria-hidden="true"></span><span class="sr-only">Unread</span></a>
+          <a class="notif-item unread" href="#">
+            <span class="ic" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round"><path d="M4 5h16v11H9l-4 3.5V16H4z"/></svg></span>
+            <span><b>Amina replied about your braiding booking</b>
+              <span>"Thursday at 14:00 works for me."</span>
+              <time datetime="2026-08-16">5 hours ago</time></span>
+            <span class="new" aria-hidden="true"></span><span class="sr-only">Unread</span></a>
+          <a class="notif-item unread" href="#">
+            <span class="ic" aria-hidden="true"><svg width="16" height="16"><use href="#check"/></svg></span>
+            <span><b>Order delivered</b>
+              <span>Confirm it arrived so Debbies can be paid.</span>
+              <time datetime="2026-08-15">Yesterday</time></span>
+            <span class="new" aria-hidden="true"></span><span class="sr-only">Unread</span></a>
+          <a class="notif-item" href="#">
+            <span class="ic" aria-hidden="true"><svg width="16" height="16"><use href="#star"/></svg></span>
+            <span><b>How was the shea butter?</b>
+              <span>Leave a review to help other buyers.</span>
+              <time datetime="2026-08-13">3 days ago</time></span></a>
+        </div>
+        <p class="pfoot"><a href="#">See all notifications</a></p>
+      </div>
+
+      <div class="pop" id="acctPop" role="region" aria-labelledby="acctTitle">
+        <div class="acct-who">
+          <span class="av" aria-hidden="true">RP</span>
+          <span><b id="acctTitle">Riccardo Pizzuti</b><span>riccardo@example.com</span></span>
+        </div>
+        <nav class="acct-menu" aria-label="Your account">
+          <a href="#"><svg width="17" height="17"><use href="#cart"/></svg>My orders<span class="cnt">2</span></a>
+          <a href="#"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5"
+            width="18" height="16" rx="2.5"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>My bookings<span class="cnt">1</span></a>
+          <a href="#"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-4 3.5V16H4z"/></svg>Messages</a>
+          <a href="#"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-7-9.4A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 2.6c0 4.9-7 9.4-7 9.4z"/></svg>Saved items</a>
+          <span class="sep" role="presentation"></span>
+          <a href="#"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>Addresses</a>
+          <a href="#"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6"
+            width="18" height="12" rx="2.4"/><path d="M3 10h18"/></svg>Payment methods</a>
+          <a href="#"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 3.6v2.2M12 18.2v2.2M20.4 12h-2.2M5.8 12H3.6M17.9 6.1l-1.6 1.6M7.7 16.3l-1.6 1.6M17.9 17.9l-1.6-1.6M7.7 7.7L6.1 6.1"/></svg>Account settings</a>
+          <span class="sep" role="presentation"></span>
+          <a href="#" class="out"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M15 17l5-5-5-5M20 12H9M11 4H5v16h6"/></svg>Sign out</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- hero -->
+  <section class="hero on-light" id="main" tabindex="-1">
+    <div class="hero-bg">
+      <img class="poster" src="assets/hero-poster.jpg" alt="" width="960" height="540">
+      <video id="bgv" autoplay muted loop playsinline preload="auto"
+             poster="assets/hero-poster.jpg" aria-hidden="true" tabindex="-1">
+        <source src="assets/hero.webm" type="video/webm">
+        <source src="assets/hero.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-in">
+      <h1>Buy the cloth. Book the tailor.</h1>
+      <p>Food, fabric and beauty delivered to your door — and the braider, tailor or caterer you'd otherwise find through a friend of a friend.</p>
+      <div class="hbtns">
+        <a class="btn btn-y" href="shop.html">Shop now <span class="arrowb"><svg width="16" height="16"><use href="#arr"/></svg></span></a>
+        <a class="btn btn-o" href="services.html">Book a service</a>
+      </div>
+    </div>
+    <button class="vplay" id="vplay" type="button" aria-pressed="false"
+            aria-label="Pause the background video">
+      <svg class="ic-pause" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.2" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1.2" fill="currentColor"/></svg>
+      <svg class="ic-play" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg>
+    </button>
+  </section>
+
+  <!-- ============ seasonal campaigns ============ -->
+  <section class="sea" id="season" aria-labelledby="h-season">
+    <div class="sea-head">
+      <h2 id="h-season"><span class="lead">On right now.</span> <span class="sub">Seasonal picks, while they last.</span></h2>
+      <div class="sea-ctl" id="seaCtl" hidden>
+        <button type="button" id="seaPrev" aria-label="Previous offer" aria-controls="seaTrack">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
+               aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button type="button" id="seaNext" aria-label="Next offer" aria-controls="seaTrack">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
+               aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+    <div class="sea-track" id="seaTrack" tabindex="0" role="group"
+         aria-label="Seasonal offers, scrollable">
+      <article class="sea-card">
+        <div class="sea-txt">
+          <p class="sea-when">Until 24 December</p>
+          <h3><a href="shop.html">Gifts that travel well</a></h3>
+          <p>Kente, shea butter and spice sets, chosen because they survive the post and arrive looking like a present.</p>
+          <span class="sea-go">Shop the collection
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true"><path d="M5 12h13M12 6l6 6-6 6"/></svg></span>
+        </div>
+        <div class="sea-img" role="img" aria-label="A wrapped parcel of folded cloth tied with twine, photographed from above." style="background:linear-gradient(145deg,#7F3F3F,#3D1F26)">
+          <span class="grain" aria-hidden="true"></span>
+        </div>
+      </article>
+      <article class="sea-card">
+        <div class="sea-txt">
+          <p class="sea-when">From 1 August</p>
+          <h3><a href="shop.html">Everything for the new term</a></h3>
+          <p>Lunchboxes, water bottles, name labels and the haircut before the first day back.</p>
+          <span class="sea-go">Shop the collection
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true"><path d="M5 12h13M12 6l6 6-6 6"/></svg></span>
+        </div>
+        <div class="sea-img" role="img" aria-label="A packed school bag on a kitchen table beside a lunchbox." style="background:linear-gradient(145deg,#4A6D8C,#22384C)">
+          <span class="grain" aria-hidden="true"></span>
+        </div>
+      </article>
+      <article class="sea-card">
+        <div class="sea-txt">
+          <p class="sea-when">Eid al-Fitr</p>
+          <h3><a href="shop.html">Ready for the table, and the day</a></h3>
+          <p>Dates, spice, fabric by the yard, and caterers who can cover a full sitting.</p>
+          <span class="sea-go">Shop the collection
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true"><path d="M5 12h13M12 6l6 6-6 6"/></svg></span>
+        </div>
+        <div class="sea-img" role="img" aria-label="A laid table with dishes of dates, rice and grilled meat." style="background:linear-gradient(145deg,#6B7F4A,#2E3A22)">
+          <span class="grain" aria-hidden="true"></span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+
+  <!-- categories -->
+  <section class="sec" id="products">
+    <div class="shead"><h2><span class="lead">Flash sale.</span> <span class="sub">Ends this evening.</span> <span class="timer">03:32:29</span></h2><a class="more" href="shop.html">See more →</a></div>
+    <div class="prods row-scroll" tabindex="0" role="group" aria-label="Flash sale products, scrollable">
+      <a class="card" href="product.html">
+        <div class="cimg" style="background:linear-gradient(150deg,#CDB68E,#7F6940)"><span class="sale">−18%</span><span class="heart"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-9.3A4 4 0 0112 8a4 4 0 017 2.7C19 15.6 12 20 12 20z"/></svg></span><span class="grain"></span></div>
+        <div class="seller"><span class="av" style="background:#8A6A3E">O</span> Offeibia <svg class="vf" width="13" height="13"><use href="#check"/></svg><span class="rt"><svg width="12" height="12"><use href="#star"/></svg>4.9</span></div>
+        <h3>Hand-woven kente, 2 yards</h3>
+        <div class="price"><b>€64.00</b><s>€78.00</s></div>
+        <div class="vat">VAT included</div>
+        <div class="addrow"><span class="addb">Add to basket</span></div>
+      </a>
+      <a class="card" href="product.html">
+        <div class="cimg" style="background:linear-gradient(150deg,#D6A362,#87551F)"><span class="heart"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-9.3A4 4 0 0112 8a4 4 0 017 2.7C19 15.6 12 20 12 20z"/></svg></span><span class="grain"></span></div>
+        <div class="seller"><span class="av" style="background:#9B5A2A">D</span> Debbies <svg class="vf" width="13" height="13"><use href="#check"/></svg><span class="rt"><svg width="12" height="12"><use href="#star"/></svg>4.8</span></div>
+        <h3>Ground spice blend, 250 g</h3>
+        <div class="price"><b>€12.90</b></div>
+        <div class="vat">VAT included</div>
+        <div class="addrow"><span class="addb">Add to basket</span></div>
+      </a>
+      <a class="card" href="product.html">
+        <div class="cimg" style="background:linear-gradient(150deg,#E2D7BA,#9C8C61)"><span class="heart"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-9.3A4 4 0 0112 8a4 4 0 017 2.7C19 15.6 12 20 12 20z"/></svg></span><span class="grain"></span></div>
+        <div class="seller"><span class="av" style="background:#4F7A57">N</span> Nuru <svg class="vf" width="13" height="13"><use href="#check"/></svg><span class="rt"><svg width="12" height="12"><use href="#star"/></svg>4.7</span></div>
+        <h3>Raw shea butter, 500 g</h3>
+        <div class="price"><b>€18.50</b></div>
+        <div class="vat">VAT included</div>
+        <div class="addrow"><span class="addb">Add to basket</span></div>
+      </a>
+      <a class="card" href="product.html">
+        <div class="cimg" style="background:linear-gradient(150deg,#A0BA9C,#4A6D50)"><span class="heart"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-9.3A4 4 0 0112 8a4 4 0 017 2.7C19 15.6 12 20 12 20z"/></svg></span><span class="grain"></span></div>
+        <div class="seller"><span class="av" style="background:#4A6A82">A</span> Adom <svg class="vf" width="13" height="13"><use href="#check"/></svg><span class="rt"><svg width="12" height="12"><use href="#star"/></svg>4.6</span></div>
+        <h3>Cold-pressed palm oil, 1 L</h3>
+        <div class="price"><b>€14.00</b></div>
+        <div class="vat">VAT included</div>
+        <div class="addrow"><span class="addb">Add to basket</span></div>
+      </a>
+      <a class="card" href="product.html">
+        <div class="cimg" style="background:linear-gradient(150deg,#C9A9B6,#6E4E60)"><span class="sale">−20%</span><span class="heart"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-9.3A4 4 0 0112 8a4 4 0 017 2.7C19 15.6 12 20 12 20z"/></svg></span><span class="grain"></span></div>
+        <div class="seller"><span class="av" style="background:#7A5A6E">A</span> Akosua <svg class="vf" width="13" height="13"><use href="#check"/></svg><span class="rt"><svg width="12" height="12"><use href="#star"/></svg>4.9</span></div>
+        <h3>Printed wax fabric, 6 yards</h3>
+        <div class="price"><b>€52.00</b><s>€65.00</s></div>
+        <div class="vat">VAT included</div>
+        <div class="addrow"><span class="addb">Add to basket</span></div>
+      </a>
+          <a class="card" href="product.html"><div class="cimg" style="background:linear-gradient(150deg,#B6C7A8,#5A6E48)"><span class="heart"><svg width="16" height="16"><use href="#heart"/></svg></span><span class="grain"></span></div><div class="seller"><span class="av" style="background:#4A6A82">A</span> Adom <svg class="vf" width="13" height="13"><use href="#check"/></svg><span class="rt"><svg width="12" height="12"><use href="#star"/></svg>4.6</span></div><h3>Dried hibiscus, 200 g</h3><div class="price"><b>€8.40</b></div><div class="vat">VAT included</div><div class="addrow"><span class="addb">Add to basket</span></div></a>
+      <a class="card" href="product.html"><div class="cimg" style="background:linear-gradient(150deg,#D9C7A0,#8A7343)"><span class="heart"><svg width="16" height="16"><use href="#heart"/></svg></span><span class="grain"></span></div><div class="seller"><span class="av" style="background:#9B5A2A">D</span> Debbies <svg class="vf" width="13" height="13"><use href="#check"/></svg><span class="rt"><svg width="12" height="12"><use href="#star"/></svg>4.8</span></div><h3>Millet flour, stone-ground 1 kg</h3><div class="price"><b>€9.90</b></div><div class="vat">VAT included</div><div class="addrow"><span class="addb">Add to basket</span></div></a>
+      <a class="card" href="product.html"><div class="cimg" style="background:linear-gradient(150deg,#B99C8A,#6B4A38)"><span class="sale">New</span><span class="heart"><svg width="16" height="16"><use href="#heart"/></svg></span><span class="grain"></span></div><div class="seller"><span class="av" style="background:#8A6A3E">O</span> Offeibia <svg class="vf" width="13" height="13"><use href="#check"/></svg><span class="rt"><svg width="12" height="12"><use href="#star"/></svg>4.9</span></div><h3>Beaded waist chain, brass</h3><div class="price"><b>€27.00</b></div><div class="vat">VAT included</div><div class="addrow"><span class="addb">Add to basket</span></div></a>
+      <a class="card" href="product.html"><div class="cimg" style="background:linear-gradient(150deg,#C7B49B,#7A6244)"><span class="heart"><svg width="16" height="16"><use href="#heart"/></svg></span><span class="grain"></span></div><div class="seller"><span class="av" style="background:#4F7A57">N</span> Nuru <svg class="vf" width="13" height="13"><use href="#check"/></svg><span class="rt"><svg width="12" height="12"><use href="#star"/></svg>4.7</span></div><h3>Black soap, 3-bar pack</h3><div class="price"><b>€15.20</b></div><div class="vat">VAT included</div><div class="addrow"><span class="addb">Add to basket</span></div></a>
+      <a class="card" href="product.html"><div class="cimg" style="background:linear-gradient(150deg,#A8B8C4,#4C5F6E)"><span class="heart"><svg width="16" height="16"><use href="#heart"/></svg></span><span class="grain"></span></div><div class="seller"><span class="av" style="background:#7A5A6E">A</span> Akosua <svg class="vf" width="13" height="13"><use href="#check"/></svg><span class="rt"><svg width="12" height="12"><use href="#star"/></svg>4.9</span></div><h3>Indigo-dyed cotton, 4 yards</h3><div class="price"><b>€41.00</b></div><div class="vat">VAT included</div><div class="addrow"><span class="addb">Add to basket</span></div></a>
+      <a class="card" href="product.html"><div class="cimg" style="background:linear-gradient(150deg,#CBB07E,#7E6231)"><span class="heart"><svg width="16" height="16"><use href="#heart"/></svg></span><span class="grain"></span></div><div class="seller"><span class="av" style="background:#4A6A82">A</span> Adom <svg class="vf" width="13" height="13"><use href="#check"/></svg><span class="rt"><svg width="12" height="12"><use href="#star"/></svg>4.6</span></div><h3>Plantain chips, salted 6-pack</h3><div class="price"><b>€11.50</b></div><div class="vat">VAT included</div><div class="addrow"><span class="addb">Add to basket</span></div></a>
+      <a class="card" href="product.html"><div class="cimg" style="background:linear-gradient(150deg,#9FA98F,#4B5738)"><span class="sale">−15%</span><span class="heart"><svg width="16" height="16"><use href="#heart"/></svg></span><span class="grain"></span></div><div class="seller"><span class="av" style="background:#8A6A3E">O</span> Offeibia <svg class="vf" width="13" height="13"><use href="#check"/></svg><span class="rt"><svg width="12" height="12"><use href="#star"/></svg>4.9</span></div><h3>Woven storage basket, large</h3><div class="price"><b>€34.00</b><s>€40.00</s></div><div class="vat">VAT included</div><div class="addrow"><span class="addb">Add to basket</span></div></a>
+    </div>
+  </section>
+
+  <!-- services -->
+  <section class="sec">
+    <div class="shead"><h2><span class="lead">Shop by category.</span> <span class="sub">Find it faster.</span></h2><a class="more" href="shop.html">See all →</a></div>
+    <div class="tiles">
+      <a class="tile" href="shop.html"><span class="box"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M7 3v8M11 3v8M9 11v10M17 3c-1.5 2-2 4-2 7v11"/></svg></span><span>Food</span></a>
+      <a class="tile" href="shop.html"><span class="box"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M9 3l3 2 3-2 5 3-2 4-2-1v12H8V9L6 10 4 6z"/></svg></span><span>Fabric</span></a>
+      <a class="tile" href="shop.html"><span class="box"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M12 3c3 4 5 6 5 9a5 5 0 01-10 0c0-3 2-5 5-9z"/></svg></span><span>Beauty</span></a>
+      <a class="tile" href="shop.html"><span class="box"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7M6 10v10h12V10"/></svg></span><span>Home</span></a>
+      <a class="tile" href="shop.html"><span class="box"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></span><span>Braiding</span></a>
+      <a class="tile" href="shop.html"><span class="box"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19L17 6l2 2-12 13-3 1z"/><circle cx="19" cy="6" r="2.2"/></svg></span><span>Tailoring</span></a>
+      <a class="tile" href="shop.html"><span class="box"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16v12H4z"/><path d="M8 8V5h8v3M9 14h6"/></svg></span><span>Catering</span></a>
+      <a class="tile" href="shop.html"><span class="box"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4a4 4 0 00-1 7l-8 8 2 2 8-8a4 4 0 005-5l-3 3-2-2z"/></svg></span><span>Trades</span></a>
+    </div>
+  </section>
+
+  <!-- products -->
+  <section class="sec" id="services">
+    <div class="shead"><h2><span class="lead">Book someone near you.</span> <span class="sub">Real people, real availability.</span></h2><a class="more" href="services.html">All services →</a></div>
+    <div class="svcs row-scroll" tabindex="0" role="group" aria-label="Services near you, scrollable">
+      <div class="svc"><div class="top"><span class="av">A</span><span><h3>Box braids</h3><span class="loc">Amina O. · Kallio · ★ 4.9</span></span></div><div class="from">from €85 <small>· 4–6 hrs</small></div><div class="slot"><i></i> Next free: Thursday</div></div>
+      <div class="svc"><div class="top"><span class="av">K</span><span><h3>Tailoring</h3><span class="loc">Kofi M. · Myyrmäki · ★ 4.8</span></span></div><div class="from">from €25 <small>· per piece</small></div><div class="slot"><i></i> Next free: tomorrow</div></div>
+      <div class="svc"><div class="top"><span class="av">A</span><span><h3>Event catering</h3><span class="loc">Ama B. · Leppävaara · ★ 5.0</span></span></div><div class="from">from €18 <small>· per person</small></div><div class="slot"><i></i> Booking 2 weeks out</div></div>
+      <div class="svc"><div class="top"><span class="av">Y</span><span><h3>Photography</h3><span class="loc">Yaw A. · Vallila · ★ 4.9</span></span></div><div class="from">from €140 <small>· half day</small></div><div class="slot"><i></i> Next free: Saturday</div></div>
+          <div class="svc"><div class="top"><span class="av">E</span><span><h3>Nail technician</h3><span class="loc">Esi D. · Itäkeskus · ★ 4.8</span></span></div><div class="from">from €45 <small>· 90 min</small></div><div class="slot"><i></i> Next free: today</div></div>
+      <div class="svc"><div class="top"><span class="av">S</span><span><h3>Barbering</h3><span class="loc">Samuel A. · Pasila · ★ 4.9</span></span></div><div class="from">from €22 <small>· per cut</small></div><div class="slot"><i></i> Walk-ins Saturday</div></div>
+      <div class="svc"><div class="top"><span class="av">G</span><span><h3>Removals &amp; delivery</h3><span class="loc">Gideon T. · Vantaa · ★ 4.7</span></span></div><div class="from">from €60 <small>· per load</small></div><div class="slot"><i></i> Next free: Monday</div></div>
+      <div class="svc"><div class="top"><span class="av">M</span><span><h3>Makeup for events</h3><span class="loc">Maame K. · Töölö · ★ 5.0</span></span></div><div class="from">from €95 <small>· per face</small></div><div class="slot"><i></i> Booking 3 weeks out</div></div>
+      <div class="svc"><div class="top"><span class="av">J</span><span><h3>Home cleaning</h3><span class="loc">Joy N. · Espoo · ★ 4.8</span></span></div><div class="from">from €38 <small>· per visit</small></div><div class="slot"><i></i> Next free: Wednesday</div></div>
+      <div class="svc"><div class="top"><span class="av">P</span><span><h3>Bicycle repair</h3><span class="loc">Prince O. · Kallio · ★ 4.6</span></span></div><div class="from">from €30 <small>· per bike</small></div><div class="slot"><i></i> Next free: tomorrow</div></div>
+    </div>
+  </section>
+
+  <!-- ============ sell band (supply side) ============ -->
+  <section class="sell-band" aria-labelledby="h-sell">
+    <div>
+      <h2 id="h-sell">Got something to sell, or a skill to offer?</h2>
+      <p>One account covers both. List products, take bookings, or do both from the same
+        dashboard. Nothing to pay up front.</p>
+      <div class="rates">
+        <div><b>10%</b><span>on products</span></div>
+        <div><b>15%</b><span>on services</span></div>
+        <div><b>48 h</b><span>to get approved</span></div>
+      </div>
+    </div>
+    <div class="sell-doors">
+      <a href="sell.html">
+        <span class="ic" aria-hidden="true"><svg width="19" height="19"><use href="#cart"/></svg></span>
+        <span><b>Sell products</b><span>Anything you make, grow or stock</span></span>
+        <svg class="arw" width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M12 6l6 6-6 6"/></svg>
+      </a>
+      <a href="sell.html">
+        <span class="ic" aria-hidden="true">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M8 3v4M16 3v4M3 10h18"/>
+          </svg></span>
+        <span><b>Offer a service</b><span>Braiding, tailoring, catering, trades</span></span>
+        <svg class="arw" width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M12 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- why -->
+  <section class="sec">
+    <div class="shead"><h2><span class="lead">Why Shopziexpress.</span> <span class="sub">How the money works.</span></h2></div>
+    <div class="why">
+      <div class="w"><span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 2.5v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10v-5z"/><path d="M9 12l2 2 4-4.5"/></svg></span><b>Money held safely</b><p>Sellers are paid only once your order arrives or the work is done.</p></div>
+      <div class="w"><span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12V4h8l9 9-8 8z"/><circle cx="7.5" cy="7.5" r="1.3"/></svg></span><b>The price is the price</b><p>VAT included at checkout. Nothing extra at the border.</p></div>
+      <div class="w"><span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg></span><b>Talk to the seller</b><p>Message before and after. A person, not a call centre.</p></div>
+      <div class="w"><span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.8" y="6.4" width="18.4" height="13.2" rx="2.2"/><path d="M2.8 10.8h18.4"/></svg></span><b>Sellers paid weekly</b><p>Every Friday. No listing fees, no monthly fees.</p></div>
+    </div>
+  </section>
+
+  <!-- impact -->
+  <section class="impact">
+    <div>
+      <h2>A fixed share of our profit goes to people who need it</h2>
+      <p>Shopziexpress gives skilled people somewhere to sell. A set percentage of what the platform earns supports the sick, the orphaned and those most in need.</p>
+      <p class="imnote">Placeholder — figure, recipient and mechanism to be confirmed before publication.</p>
+    </div>
+    <div class="big"><b>__%</b><span>of profit, every year</span></div>
+  </section>
+
+  <!-- footer -->
+  <footer class="foot">
+    <div>
+      <span class="brand" style="color:var(--deep)"><span class="glyph"><svg width="18" height="18"><use href="#cart"/></svg></span><b>Shopziexpress</b></span>
+      <p>Products and services from people you can reach. Registered in Finland, delivering across the EU.</p>
+    </div>
+    <div><h3>Shop</h3><a href="shop.html">Products</a><a href="services.html">Services</a><a href="#">Shops</a><a href="#">Deals</a></div>
+    <div><h3>Sell</h3><a href="sell.html">Start selling</a><a href="#">Fees &amp; payouts</a><a href="#">Seller terms</a></div>
+    <div><h3>Customer service</h3><a href="#">Track an order</a><a href="#">Returns</a><a href="#">Disputes</a><a href="#">Report a violation</a><a href="#">Contact</a></div>
+    <div><h3>About us</h3><a href="#">About</a><a href="#">Our impact</a><a href="#">Accessibility</a></div>
+  </footer>
+  <div class="fbase"><span>© 2026 Shopziexpress Oy · Helsinki, Finland</span><span>Privacy · Terms · VAT information</span></div>
+
+</div>
+</div>
+<script>
+/* shadow the nav once it detaches from the top of the page */
+(function(){
+  const w=document.querySelector('.navwrap'); if(!w)return;
+  const sentinel=document.createElement('div');
+  sentinel.style.cssText='position:absolute;top:0;height:1px;width:1px';
+  w.parentNode.insertBefore(sentinel,w);
+  new IntersectionObserver(([e])=>w.classList.toggle('stuck',!e.isIntersecting),
+    {threshold:0}).observe(sentinel);
+})();
+</script>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" aria-hidden="true" aria-label="Site menu">
+  <div class="dhead">
+    <span class="glyph"><svg width="18" height="18"><use href="#cart"/></svg></span>
+    <b>Shopziexpress</b>
+    <button class="dclose" id="dclose" aria-label="Close menu">&times;</button>
+  </div>
+  <nav class="dbody" aria-label="All pages">
+    <div class="dgroup">
+      <h2>Browse</h2>
+      <a class="item" href="index.html" aria-current="page"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7M6 10v10h12V10"/></svg>Home</a>
+      <a class="item" href="shop.html"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.4 4.2h2l1 2.6M6.4 6.8h14l-2.2 8H8.6z"/><circle cx="10" cy="18.4" r="1.4" fill="currentColor"/><circle cx="16.4" cy="18.4" r="1.4" fill="currentColor"/></svg>Products</a>
+      <a class="item" href="services.html"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Services</a>
+      <a class="item" href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16v11H4z"/><path d="M3 5h18l-1 4H4z"/></svg>Shops</a>
+      <a class="item" href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12V4h8l9 9-8 8z"/><circle cx="7.5" cy="7.5" r="1.2" fill="currentColor"/></svg>Deals</a>
+    </div>
+    <div class="dsep"></div>
+    <div class="dgroup">
+      <h2>Sell</h2>
+      <a class="item" href="sell.html"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Start selling</a>
+      <a class="item" href="sell.html"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Offer a service</a>
+      <a class="item" href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M17 6.5A6 6 0 108 17M4 10h9M4 14h9"/></svg>Fees &amp; payouts</a>
+    </div>
+    <div class="dsep"></div>
+    <div class="dgroup">
+      <h2>Customer service</h2>
+      <a class="item" href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M2 7h11v9H2zM13 10h4l3 3v3h-7z"/><circle cx="6" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>Track an order or booking</a>
+      <a class="item" href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h11a5 5 0 010 10h-4"/><path d="M8 5L4 9l4 4"/></svg>Returns &amp; cancellations</a>
+      <a class="item" href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 2.5v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10v-5z"/></svg>Disputes</a>
+      <a class="item" href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 2.5v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10v-5z"/></svg>Report a violation</a>
+      <a class="item" href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg>Contact</a>
+    </div>
+    <div class="dsep"></div>
+    <div class="dgroup">
+      <h2>About us</h2>
+      <a class="item" href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>About</a>
+      <a class="item" href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 20s-7-4.4-7-9.3A4 4 0 0112 8a4 4 0 017 2.7C19 15.6 12 20 12 20z"/></svg>Our impact</a>
+      <a class="item" href="#"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="5" r="1.6"/><path d="M5 9h14M12 9v5m0 0l-3 6m3-6l3 6"/></svg>Accessibility</a>
+    </div>
+  </nav>
+  <div class="dfoot">
+    <a class="signin" href="#">Sign in</a>
+    <a class="sell" href="sell.html">Start selling</a>
+    <p>Registered in Finland · Delivering across the EU</p>
+  </div>
+</aside>
+<script>
+/* ---- burger menu: focus-trapped drawer ---- */
+(function(){
+  const burger=document.getElementById('burger'), drawer=document.getElementById('drawer'),
+        scrim=document.getElementById('scrim'), closeBtn=document.getElementById('dclose');
+  if(!burger||!drawer) return;
+  let lastFocus=null;
+  const focusables=()=>[...drawer.querySelectorAll('a[href],button')].filter(el=>el.offsetParent!==null);
+
+  function open(){
+    lastFocus=document.activeElement;
+    scrim.hidden=false; requestAnimationFrame(()=>{scrim.classList.add('on');drawer.classList.add('on')});
+    drawer.setAttribute('aria-hidden','false'); burger.setAttribute('aria-expanded','true');
+    document.body.classList.add('locked');
+    setTimeout(()=>closeBtn.focus(),60);
+  }
+  function close(){
+    drawer.classList.remove('on'); scrim.classList.remove('on');
+    drawer.setAttribute('aria-hidden','true'); burger.setAttribute('aria-expanded','false');
+    document.body.classList.remove('locked');
+    setTimeout(()=>{scrim.hidden=true},300);
+    if(lastFocus) lastFocus.focus();
+  }
+  window.__menuReady=true;
+  burger.addEventListener('click',()=>burger.getAttribute('aria-expanded')==='true'?close():open());
+  closeBtn.addEventListener('click',close);
+  scrim.addEventListener('click',close);
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&drawer.classList.contains('on')) close();
+    if(e.key==='Tab'&&drawer.classList.contains('on')){
+      const f=focusables(); if(!f.length) return;
+      const first=f[0], last=f[f.length-1];
+      if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+      else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+    }
+  });
+})();
+</script>
+
+<button class="chat-btn" id="chatBtn" aria-expanded="false" aria-controls="chatPanel">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M4 5h16v11H9l-4 3.5V16H4z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01"/>
+  </svg>
+  <span class="lbl">Ask a question</span>
+</button>
+
+<div class="chat-panel" id="chatPanel" role="region" aria-labelledby="chatTitle" aria-hidden="true">
+  <div class="chat-head">
+    <span class="av" aria-hidden="true">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5h16v11H9l-4 3.5V16H4z"/></svg></span>
+    <span><b id="chatTitle">Shopziexpress help</b><span>Answers in a few seconds</span></span>
+    <button class="chat-close" id="chatClose" aria-label="Close help">&times;</button>
+  </div>
+
+  <div class="chat-body" id="chatBody">
+    <p class="chat-msg bot">Hello. Ask me anything about an order, a booking, delivery or
+      returns. If I cannot help, I will pass you to a person.</p>
+    <div class="chat-sugs">
+      <button type="button">Where is my order?</button>
+      <button type="button">How do returns work?</button>
+      <button type="button">When does the seller get paid?</button>
+    </div>
+  </div>
+
+  <div class="chat-foot">
+    <form class="chat-form" id="chatForm">
+      <label class="sr-only" for="chatInput">Type your question</label>
+      <input id="chatInput" type="text" autocomplete="off" placeholder="Type your question…">
+      <button class="chat-send" type="submit" aria-label="Send question">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h12.5M12 6.2l6.3 5.8-6.3 5.8"/></svg>
+      </button>
+    </form>
+    <p class="chat-note">Interface only in this prototype. Nothing is sent anywhere.</p>
+  </div>
+</div>
+
+<div class="authbar" role="group" aria-label="Preview state (prototype only)">
+  <span>Viewing as</span>
+  <button data-auth="out" aria-pressed="true">Signed out</button>
+  <button data-auth="in" aria-pressed="false">Signed in</button>
+</div>
+
+<script>
+/* ---- signed-in header: bell, account menu, chat, auth toggle ---- */
+(function(){
+  const body = document.body;
+
+  /* Two disclosure popovers that must never be open together. They are menus,
+     not dialogs, so focus is not trapped — Escape closes and returns focus,
+     which is the pattern people expect from a header menu. */
+  const pairs = [['notifBtn','notifPop'], ['acctBtn','acctPop']]
+    .map(([b,p]) => [document.getElementById(b), document.getElementById(p)])
+    .filter(([b,p]) => b && p);
+
+  function close(btn, pop){
+    pop.classList.remove('on');
+    btn.setAttribute('aria-expanded','false');
+  }
+  function closeAll(except){
+    pairs.forEach(([b,p]) => { if(b !== except) close(b,p); });
+  }
+  pairs.forEach(([btn, pop]) => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      closeAll(btn);
+      if(open){ close(btn, pop); }
+      else { pop.classList.add('on'); btn.setAttribute('aria-expanded','true'); }
+    });
+    pop.addEventListener('click', e => e.stopPropagation());
+  });
+  document.addEventListener('click', () => closeAll(null));
+  document.addEventListener('keydown', e => {
+    if(e.key !== 'Escape') return;
+    pairs.forEach(([b,p]) => {
+      if(b.getAttribute('aria-expanded') === 'true'){ close(b,p); b.focus(); }
+    });
+  });
+
+  /* ---- chat ---- */
+  const cBtn = document.getElementById('chatBtn'),
+        cPan = document.getElementById('chatPanel'),
+        cCls = document.getElementById('chatClose'),
+        cFrm = document.getElementById('chatForm'),
+        cInp = document.getElementById('chatInput'),
+        cBody= document.getElementById('chatBody');
+
+  function chatOpen(on){
+    cPan.classList.toggle('on', on);
+    cPan.setAttribute('aria-hidden', String(!on));
+    cBtn.setAttribute('aria-expanded', String(on));
+    cBtn.style.opacity = on ? '0' : '';
+    cBtn.style.pointerEvents = on ? 'none' : '';
+    if(on) setTimeout(() => cInp.focus(), 180); else cBtn.focus();
+  }
+  if(cBtn){
+    cBtn.addEventListener('click', () => chatOpen(true));
+    cCls.addEventListener('click', () => chatOpen(false));
+    document.addEventListener('keydown', e => {
+      if(e.key === 'Escape' && cPan.classList.contains('on')) chatOpen(false);
+    });
+
+    /* Say something back, so the component reads as a chat rather than a dead
+       box — but never pretend to answer. The prototype has no knowledge. */
+    function ask(text){
+      if(!text.trim()) return;
+      const me = document.createElement('p');
+      me.className = 'chat-msg me'; me.textContent = text;
+      cBody.appendChild(me);
+      const bot = document.createElement('p');
+      bot.className = 'chat-msg bot';
+      bot.textContent = 'This is a design prototype, so I cannot answer yet. '
+        + 'In the real thing you would get an answer here, with a link to a person '
+        + 'if I could not help.';
+      setTimeout(() => { cBody.appendChild(bot); cBody.scrollTop = cBody.scrollHeight; }, 450);
+      cBody.scrollTop = cBody.scrollHeight;
+    }
+    cFrm.addEventListener('submit', e => { e.preventDefault(); ask(cInp.value); cInp.value=''; });
+    cBody.querySelectorAll('.chat-sugs button').forEach(b =>
+      b.addEventListener('click', () => ask(b.textContent)));
+  }
+
+  /* ---- prototype-only: switch between signed out and signed in ---- */
+  document.querySelectorAll('[data-auth]').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('[data-auth]').forEach(o =>
+      o.setAttribute('aria-pressed', String(o === b)));
+    body.classList.toggle('signedin', b.dataset.auth === 'in');
+    closeAll(null);
+  }));
+})();
+</script>
+
+
+<div class="seasonbar" role="group" aria-label="Preview state (prototype only)">
+  <span>Campaigns</span>
+  <button data-season="1" aria-pressed="false">One</button>
+  <button data-season="3" aria-pressed="true">Three</button>
+</div>
+
+<script>
+/* ---- seasonal band: a scroll row, never a slideshow ---- */
+(function(){
+  const sea   = document.getElementById('season'),
+        track = document.getElementById('seaTrack'),
+        ctl   = document.getElementById('seaCtl'),
+        prev  = document.getElementById('seaPrev'),
+        next  = document.getElementById('seaNext');
+  if(!sea) return;
+
+  const cards = () => [...track.querySelectorAll('.sea-card')].filter(c => !c.hidden);
+
+  /* controls exist only when there is something to scroll to. A disabled
+     arrow beside a single card is furniture. */
+  function sync(){
+    const many = cards().length > 1;
+    sea.classList.toggle('multi', many);
+    ctl.hidden = !many;
+    if(!many) return;
+    const max = track.scrollWidth - track.clientWidth - 2;
+    prev.disabled = track.scrollLeft <= 2;
+    next.disabled = track.scrollLeft >= max;
+  }
+  function step(dir){
+    const c = cards()[0];
+    if(!c) return;
+    track.scrollBy({ left: dir * (c.getBoundingClientRect().width + 18) });
+  }
+  prev.addEventListener('click', () => step(-1));
+  next.addEventListener('click', () => step(1));
+  track.addEventListener('scroll', sync, { passive:true });
+  window.addEventListener('resize', sync);
+
+  /* prototype only — show the team how one campaign and several behave */
+  document.querySelectorAll('[data-season]').forEach(b => b.addEventListener('click', () => {
+    const n = +b.dataset.season;
+    document.querySelectorAll('[data-season]').forEach(o =>
+      o.setAttribute('aria-pressed', String(o === b)));
+    [...track.querySelectorAll('.sea-card')].forEach((c,i) => { c.hidden = i >= n; });
+    track.scrollLeft = 0;
+    sync();
+  }));
+
+  sync();
+})();
+</script>
+
+
+<script>
+/* publish the sticky bar's real height so the hero can fill exactly the
+   rest of the first screen at every breakpoint */
+(function(){
+  var hero=document.querySelector('.hero'), w=document.querySelector('.navwrap');
+  if(!hero||!w) return;
+  var set=function(){
+    /* measure what actually sits above the hero, not the bar's own box —
+       the bar carries negative margin and padding, so offsetHeight is 12px
+       out and the hero overshot the fold by exactly that much */
+    var top = hero.getBoundingClientRect().top + window.scrollY;
+    document.documentElement.style.setProperty('--navh', Math.round(top)+'px');
+  };
+  set();
+  if(window.ResizeObserver) new ResizeObserver(set).observe(w);
+  window.addEventListener('resize', set);
+})();
+
+/* background video: pause control and reduced-motion handling */
+(function(){
+  var v=document.getElementById('bgv'), b=document.getElementById('vplay');
+  if(!v||!b) return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){ v.pause(); return; }
+  b.addEventListener('click', function(){
+    var paused = !v.paused;
+    if(paused){ v.pause(); } else { v.play(); }
+    b.setAttribute('aria-pressed', String(paused));
+    b.setAttribute('aria-label', paused ? 'Play the background video'
+                                        : 'Pause the background video');
+  });
+})();
+</script>
+
+</body>
+</html>
