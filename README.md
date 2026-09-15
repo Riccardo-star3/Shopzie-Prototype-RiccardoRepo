@@ -2,8 +2,8 @@
 
 **All versions: https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/**
 
-**Current version (8), published 15 September 2026:**
-https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v8-2026-09-15/
+**Current version (9), published 15 September 2026:**
+https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v9-2026-09-15/
 
 ## How the links work
 
@@ -14,11 +14,12 @@ decision can be traced back to what people were actually looking at when they ma
 
 | Share this | When |
 |---|---|
-| A **version link** (`…/v8-2026-09-15/`) | You want someone to look at a specific version. Safe to bookmark, quote in a document, or paste into a ticket. |
+| A **version link** (`…/v9-2026-09-15/`) | You want someone to look at a specific version. Safe to bookmark, quote in a document, or paste into a ticket. |
 | The **index link** (the root, above) | You want someone to find whichever version is current. This is the one page that changes. |
 
 | Version | Published | Link |
 |---|---|---|
+| 9 — signing in, by email or by phone number | 15 Sep 2026 | [`/v9-2026-09-15/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v9-2026-09-15/) |
 | 8 — the checkout takes one step at a time | 15 Sep 2026 | [`/v8-2026-09-15/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v8-2026-09-15/) |
 | 7 — a seller can name her own category | 15 Sep 2026 | [`/v7-2026-09-15/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v7-2026-09-15/) |
 | 6 — one file, six routes, seller dashboard | 11 Sep 2026 | [`/v6-2026-09-11/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v6-2026-09-11/) |
