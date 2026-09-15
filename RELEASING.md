@@ -13,6 +13,16 @@ Everything below serves that one sentence.
 3. **Only `index.html` at the root changes.** It gains a row per release. The rows already on it
    stay exactly as they are.
 
+## When to cut one
+
+**At the end of a block of work, not after every change.** A session usually covers several
+tasks. Each release costs a folder, a row on the index, a tag and a message to the team, so
+publishing per change spends all of that for nothing and hands the team a stream of links
+nobody asked for.
+
+Work is still written to the Mac after every finished piece — that is separate, and it is not
+optional. But the repo stays untouched until the work is done.
+
 ## Steps
 
 Say the new version is 7 and today is 25 October 2026.

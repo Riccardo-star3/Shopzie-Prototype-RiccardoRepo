@@ -2,8 +2,8 @@
 
 **All versions: https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/**
 
-**Current version (7), published 15 September 2026:**
-https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v7-2026-09-15/
+**Current version (8), published 15 September 2026:**
+https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v8-2026-09-15/
 
 ## How the links work
 
@@ -14,11 +14,12 @@ decision can be traced back to what people were actually looking at when they ma
 
 | Share this | When |
 |---|---|
-| A **version link** (`…/v7-2026-09-15/`) | You want someone to look at a specific version. Safe to bookmark, quote in a document, or paste into a ticket. |
+| A **version link** (`…/v8-2026-09-15/`) | You want someone to look at a specific version. Safe to bookmark, quote in a document, or paste into a ticket. |
 | The **index link** (the root, above) | You want someone to find whichever version is current. This is the one page that changes. |
 
 | Version | Published | Link |
 |---|---|---|
+| 8 — the checkout takes one step at a time | 15 Sep 2026 | [`/v8-2026-09-15/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v8-2026-09-15/) |
 | 7 — a seller can name her own category | 15 Sep 2026 | [`/v7-2026-09-15/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v7-2026-09-15/) |
 | 6 — one file, six routes, seller dashboard | 11 Sep 2026 | [`/v6-2026-09-11/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v6-2026-09-11/) |
 | 5 — video hero, light grey, five pages | Aug 2026 | [`/archive/2026-09-11/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/archive/2026-09-11/) |
@@ -45,7 +46,7 @@ works, every page is linkable, and the basket survives moving between them.
 | Your dashboard | `#/seller` | The seller side: what needs you today, your money, your products and your services |
 
 **What changed in this version:**
-[`v7-2026-09-15/WHAT-CHANGED.md`](v7-2026-09-15/WHAT-CHANGED.md) — read that first if you saw
+[`v8-2026-09-15/WHAT-CHANGED.md`](v8-2026-09-15/WHAT-CHANGED.md) — read that first if you saw
 the previous one.
 
 **Why one file rather than five pages.** Version 5 was published as five separate pages and
