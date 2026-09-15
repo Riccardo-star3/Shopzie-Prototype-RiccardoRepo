@@ -26,6 +26,10 @@ an image silently changes every old version too.
 
 - The **Current** panel near the top: version number, date, and two or three sentences on what
   changed. Move the previous current version down into the list.
+- The **wordmark link** at the very top of the page (`<a href="v6-…/">Shopziexpress</a>`). It
+  points at the current version, so it moves every release. Missed on the first release after
+  this file was written, which is why it is called out separately rather than left to "update
+  the Current panel".
 - The top of the `<ol class="list">`: a new `<li class="item">` copied from the one below it,
   with the version, date, short description and both links updated.
 
