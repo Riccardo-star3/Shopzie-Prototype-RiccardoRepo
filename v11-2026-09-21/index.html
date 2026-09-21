@@ -2840,7 +2840,7 @@ a:hover{text-decoration-thickness:2px}
   grid-template-columns:56px minmax(0,1fr) auto auto auto;
   padding:16px 0;
 }.lrow + .lrow{box-shadow:inset 0 1px 0 var(--hair)}.lrow .lth{
-  width:56px;height:56px;border-radius:var(--r-s);overflow:hidden;
+  width:56px;height:56px;border-radius:50%;overflow:hidden;
   background:var(--tint2);display:grid;place-items:center;color:var(--deep);
 }.lrow .lth img{width:100%;height:100%;object-fit:cover;display:block}.lname{margin:0;font-size:15px;font-weight:700;color:var(--ink)}.lmeta{margin:3px 0 0;font-size:13px;color:var(--mid)}.lprice{font-size:16px;font-weight:800;color:var(--ink);white-space:nowrap}.lstate{
   display:inline-flex;align-items:center;gap:6px;
@@ -2956,8 +2956,8 @@ a:hover{text-decoration-thickness:2px}
    Products get the listing's own photograph: an order for wax fabric should
    look like the wax fabric. Services have nothing to photograph — the work has
    not happened yet — so they get the same category icon the buyer saw on the
-   services page (i-scissors, i-camera, i-shirt), in a green-soft well. */.orow.withpic{grid-template-columns:48px minmax(0,1fr) auto}.orow .oth{
-  width:48px;height:48px;border-radius:var(--r-s);overflow:hidden;
+   services page (i-scissors, i-camera, i-shirt), in a green-soft well. */.orow.withpic{grid-template-columns:56px minmax(0,1fr) auto}.orow .oth{
+  width:56px;height:56px;border-radius:50%;overflow:hidden;
   background:var(--tint2);display:grid;place-items:center;color:var(--deep);
 }.orow .oth img{width:100%;height:100%;object-fit:cover;display:block}.orow .oth.glyph{background:var(--green-soft)}/* ---------- the status filter: chips, with "All" — 21 Sep 2026 ----------
    Replaced three big coloured tiles that read as STATISTICS — a number, a word
@@ -3258,7 +3258,7 @@ a:hover{text-decoration-thickness:2px}
   .lrow .lstate{grid-area:state;justify-self:start}
   .lrow .ghost{grid-area:edit;justify-self:start}
   .orow{grid-template-columns:1fr}
-  .orow.withpic{grid-template-columns:48px minmax(0,1fr)}
+  .orow.withpic{grid-template-columns:56px minmax(0,1fr)}
   .orow .oright{justify-content:flex-start}
   /* the action drops to its own full-width line rather than squeezing in
      beside a 48px picture */
@@ -3328,7 +3328,17 @@ a:hover{text-decoration-thickness:2px}
 }/* The hairline sits BETWEEN rows (.orow + .orow). When a filter hides the rows
    above, the first row still showing is not first in the DOM, so it kept its
    top line and a stray rule appeared under the chips. The pager marks the first
-   visible row `.lead`; it wins because it comes later at equal specificity. */.orow.lead,.lrow.lead{box-shadow:none}
+   visible row `.lead`; it wins because it comes later at equal specificity. */.orow.lead,.lrow.lead{box-shadow:none}/* ---------- order status lines, 21 Sep 2026 ----------
+   The To do panel's system carried into the order lists, at Riccardo's request:
+   one short line per order in its status colour, broken between rows so it
+   reads as many orders, not one bar. Same middle shades as To do and the same
+   meaning as the filter dots: red = to send / to confirm, yellow = on the way /
+   this week, green = delivered / finished. Decoration only — every row still
+   says its status in words, so nobody depends on seeing the colour. Pictures
+   round and 56px, the same as To do's opened lists and the listings. */.orow{position:relative;padding-left:22px}.orow::before{
+  content:"";position:absolute;left:0;top:8px;bottom:8px;width:6px;border-radius:6px;
+  background:var(--oline,transparent);
+}.orow[data-stage="send"],.orow[data-stage="confirm"]{--oline:#EFA597}.orow[data-stage="transit"],.orow[data-stage="week"]{--oline:#EBC24A}.orow[data-stage="done"]{--oline:#8CC4A0}
 </style>
 </head>
 <body>
@@ -5358,7 +5368,7 @@ a:hover{text-decoration-thickness:2px}
             <div class="sechead">
               <h3 id="pordh">Orders</h3>
             </div>
-            <p class="flabel" id="pordh-show">Show</p>
+            <p class="flabel" id="pordh-show">Filter</p>
             <div class="fchips" role="group" aria-labelledby="pordh-show pordh">
               <button type="button" class="fchip" aria-pressed="true" data-stage="">All <span class="fn"></span></button>
               <button type="button" class="fchip" aria-pressed="false" data-stage="send"><span class="fdot now" aria-hidden="true"></span>To send <span class="fn"></span></button>
@@ -5736,7 +5746,7 @@ a:hover{text-decoration-thickness:2px}
               <h3 id="sbookh">Bookings</h3>
               <p>A request is not a booking until you confirm the time.</p>
             </div>
-            <p class="flabel" id="sbookh-show">Show</p>
+            <p class="flabel" id="sbookh-show">Filter</p>
             <div class="fchips" role="group" aria-labelledby="sbookh-show sbookh">
               <button type="button" class="fchip" aria-pressed="true" data-stage="">All <span class="fn"></span></button>
               <button type="button" class="fchip" aria-pressed="false" data-stage="confirm"><span class="fdot now" aria-hidden="true"></span>To confirm <span class="fn"></span></button>

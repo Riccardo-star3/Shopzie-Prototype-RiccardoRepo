@@ -53,6 +53,19 @@ row above.
 
 No extra screens. **Reply** is not built yet, because messaging has not been designed.
 
+## Updated the same day: orders and bookings match the To do list
+
+A small follow-up, added to this version rather than made into a new one. It went in before
+this version's link was shared with anyone.
+
+- On the **Products** and **Services** tabs, every order and booking now has the same short
+  **coloured line** as the To do list: red for To send and To confirm, yellow for On the way and
+  This week, green for Delivered and Finished. The colours match the dots on the filter buttons.
+- Order and product pictures are **round and a little bigger** (56px), like the To do list.
+- The word above the filter buttons says **Filter** instead of "Show".
+
+The version exactly as first published is kept under the `v11` tag in the repository.
+
 ## Accessibility
 
 Checked on the built page, not assumed:
