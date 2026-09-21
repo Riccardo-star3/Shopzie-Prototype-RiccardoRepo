@@ -88,6 +88,8 @@ ol.list{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:1
 /* a version we cannot serve. Greyed, but still listed, or the sequence has a hole in it */
 .item.gone{background:var(--tint)}
 .item.gone h3{color:var(--mid)}
+/* --soft is 4.36:1 on --tint and fails; the tinted row uses --mid (5.87:1). Fixed with v10. */
+.item.gone .when,.item.gone .open.off{color:var(--mid)}
 .item .open.off{color:var(--soft);box-shadow:inset 0 0 0 1px var(--hair);cursor:default}
 
 .note{margin-top:34px;padding:20px;background:var(--tint2);border-radius:var(--r-m);
@@ -118,7 +120,7 @@ footer a{color:var(--green-d)}
     <!-- The wordmark points at the CURRENT version, so it moves with each release.
          Everything else on this page is permanent; this link and the Current panel
          are the two things a release has to change. -->
-    <a href="v9-2026-09-15/">
+    <a href="v10-2026-09-21/">
       <span class="glyph" aria-hidden="true">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor"
              stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
@@ -139,19 +141,19 @@ footer a{color:var(--green-d)}
 
     <div class="now">
       <span class="badge">Current</span>
-      <h2>Version 9 — signing in, by email or by phone number</h2>
-      <span class="when">Published 15 September 2026</span>
-      <p>The Account icon in the header opens a real sign-in panel now, on every page, and the
-        checkout's first step matches it. One field takes an email <em>or</em> a phone number —
-        typing a number swaps the password for a country code and a six-digit code by text,
-        because some buyers and sellers in Ghana have no email address at all. Apple, Google and
-        Microsoft sit above the form, and the checkout's green dashed banners are gone.</p>
+      <h2>Version 10 — the seller dashboard, in panels</h2>
+      <span class="when">Published 21 September 2026</span>
+      <p>The seller dashboard now looks like the checkout: each section is one white panel, with
+        tasks, orders and listings as rows inside it rather than loose cards. Long lists open on
+        the five most urgent and grow ten at a time with Show more. The order filters are pill
+        buttons with an “All” option and a count on each, so it is clear they filter the list
+        below. Three lines of text that told a seller nothing are gone.</p>
       <div class="row">
-        <a class="go" href="v9-2026-09-15/">Open version 9</a>
-        <a class="go" href="https://github.com/Riccardo-star3/Shopzie-Prototype-RiccardoRepo/blob/main/v9-2026-09-15/WHAT-CHANGED.md" style="background:transparent;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.55)">What changed, in full</a>
+        <a class="go" href="v10-2026-09-21/">Open version 10</a>
+        <a class="go" href="https://github.com/Riccardo-star3/Shopzie-Prototype-RiccardoRepo/blob/main/v10-2026-09-21/WHAT-CHANGED.md" style="background:transparent;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.55)">What changed, in full</a>
       </div>
       <p class="perma">Permanent link:
-        https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v9-2026-09-15/</p>
+        https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v10-2026-09-21/</p>
     </div>
 
     <h2 class="sec">Every version</h2>
@@ -164,7 +166,19 @@ footer a{color:var(--green-d)}
 
       <li class="item">
         <div class="body">
-          <span class="when">Version 9 · 15 September 2026 · current</span>
+          <span class="when">Version 10 · 21 September 2026 · current</span>
+          <h3><a href="v10-2026-09-21/">The seller dashboard, in panels</a></h3>
+          <p>Every dashboard section is one panel with rows inside, like the checkout. Orders and
+            listings open on the five most urgent, with Show more adding ten at a time. Filter
+            pills with “All” and a count on each replace the three big status tiles.</p>
+          <p class="perma">/v10-2026-09-21/</p>
+        </div>
+        <a class="open" href="v10-2026-09-21/">Open<span class="sr-only"> version 10</span></a>
+      </li>
+
+      <li class="item">
+        <div class="body">
+          <span class="when">Version 9 · 15 September 2026</span>
           <h3><a href="v9-2026-09-15/">Signing in, by email or by phone number</a></h3>
           <p>A sign-in panel on every page, opened from the Account icon. One field takes an
             email or a phone number, with a country code and a six-digit code for numbers.
