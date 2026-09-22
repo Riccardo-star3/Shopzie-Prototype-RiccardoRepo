@@ -2,8 +2,8 @@
 
 **All versions: https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/**
 
-**Current version (11), published 21 September 2026:**
-https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v11-2026-09-21/
+**Current version (12), published 22 September 2026:**
+https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v12-2026-09-22/
 
 ## How the links work
 
@@ -14,11 +14,12 @@ decision can be traced back to what people were actually looking at when they ma
 
 | Share this | When |
 |---|---|
-| A **version link** (`…/v11-2026-09-21/`) | You want someone to look at a specific version. Safe to bookmark, quote in a document, or paste into a ticket. |
+| A **version link** (`…/v12-2026-09-22/`) | You want someone to look at a specific version. Safe to bookmark, quote in a document, or paste into a ticket. |
 | The **index link** (the root, above) | You want someone to find whichever version is current. This is the one page that changes. |
 
 | Version | Published | Link |
 |---|---|---|
+| 12 — bookings a seller can act on | 22 Sep 2026 | [`/v12-2026-09-22/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v12-2026-09-22/) |
 | 11 — a clearer to-do list for sellers | 21 Sep 2026 | [`/v11-2026-09-21/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v11-2026-09-21/) |
 | 10 — the seller dashboard, in panels | 21 Sep 2026 | [`/v10-2026-09-21/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v10-2026-09-21/) |
 | 9 — signing in, by email or by phone number | 15 Sep 2026 | [`/v9-2026-09-15/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v9-2026-09-15/) |
@@ -46,10 +47,10 @@ works, every page is linkable, and the basket survives moving between them.
 | Checkout — product | `#/checkout/product` | Delivery, then payment. Card, PayPal, Klarna in Finland and the EU, Mobile Money in Ghana |
 | Checkout — service | `#/checkout/service` | Appointment, then payment. Products and services check out separately — PRD §7.1 |
 | Our impact | `#/impact` | The fund arithmetic line by line, four funded projects, four seller-verification checks |
-| Your dashboard | `#/seller` | The seller side, in panels: what needs you today, your money, then orders and listings with status filters and Show more |
+| Your dashboard | `#/seller` | The seller side, in panels: To do (with Done today), your money, then orders and listings with status filters and Show more. Services bookings have a list or calendar view and open in a side panel to accept, decline or cancel |
 
 **What changed in this version:**
-[`v11-2026-09-21/WHAT-CHANGED.md`](v11-2026-09-21/WHAT-CHANGED.md) — read that first if you saw
+[`v12-2026-09-22/WHAT-CHANGED.md`](v12-2026-09-22/WHAT-CHANGED.md) — read that first if you saw
 the previous one.
 
 **Why one file rather than five pages.** Version 5 was published as five separate pages and
