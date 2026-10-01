@@ -2,8 +2,8 @@
 
 **All versions: https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/**
 
-**Current version (12), published 22 September 2026:**
-https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v12-2026-09-22/
+**Current version (13), published 1 October 2026:**
+https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v13-2026-10-01/
 
 ## How the links work
 
@@ -14,11 +14,12 @@ decision can be traced back to what people were actually looking at when they ma
 
 | Share this | When |
 |---|---|
-| A **version link** (`…/v12-2026-09-22/`) | You want someone to look at a specific version. Safe to bookmark, quote in a document, or paste into a ticket. |
+| A **version link** (`…/v13-2026-10-01/`) | You want someone to look at a specific version. Safe to bookmark, quote in a document, or paste into a ticket. |
 | The **index link** (the root, above) | You want someone to find whichever version is current. This is the one page that changes. |
 
 | Version | Published | Link |
 |---|---|---|
+| 13 — the product page, and what is in the jar | 1 Oct 2026 | [`/v13-2026-10-01/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v13-2026-10-01/) |
 | 12 — bookings a seller can act on | 22 Sep 2026 | [`/v12-2026-09-22/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v12-2026-09-22/) |
 | 11 — a clearer to-do list for sellers | 21 Sep 2026 | [`/v11-2026-09-21/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v11-2026-09-21/) |
 | 10 — the seller dashboard, in panels | 21 Sep 2026 | [`/v10-2026-09-21/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v10-2026-09-21/) |
@@ -36,7 +37,7 @@ Publishing the next version: see [`RELEASING.md`](RELEASING.md).
 
 ## The current version
 
-**It is a single HTML file.** Seven routes switch in place on hash routes — the back button
+**It is a single HTML file.** Nine routes switch in place on hash routes — the back button
 works, every page is linkable, and the basket survives moving between them.
 
 | Page | Route | What it shows |
@@ -46,11 +47,13 @@ works, every page is linkable, and the basket survives moving between them.
 | Services | `#/services` | 24 services, 7 facets, and a location search that measures real distance from a Finnish town or from your browser |
 | Checkout — product | `#/checkout/product` | Delivery, then payment. Card, PayPal, Klarna in Finland and the EU, Mobile Money in Ghana |
 | Checkout — service | `#/checkout/service` | Appointment, then payment. Products and services check out separately — PRD §7.1 |
+| Product | `#/product/<product>` | One product: photograph, price and VAT, the seller, delivery, the return window, and what happens to your money until it arrives. Food products also carry ingredients, allergens and nutrition |
+| Become a seller | `#/sell` | Why sell here, the four checks before a first listing goes live, how and when you are paid, and what it costs — which says plainly that the rate is not settled |
 | Our impact | `#/impact` | The fund arithmetic line by line, four funded projects, four seller-verification checks |
 | Your dashboard | `#/seller` | The seller side, in panels: To do (with Done today), your money, then orders and listings with status filters and Show more. Services bookings have a list or calendar view and open in a side panel to accept, decline or cancel |
 
 **What changed in this version:**
-[`v12-2026-09-22/WHAT-CHANGED.md`](v12-2026-09-22/WHAT-CHANGED.md) — read that first if you saw
+[`v13-2026-10-01/WHAT-CHANGED.md`](v13-2026-10-01/WHAT-CHANGED.md) — read that first if you saw
 the previous one.
 
 **Why one file rather than five pages.** Version 5 was published as five separate pages and
@@ -59,9 +62,13 @@ landing page left the prototype. One document has no way out of itself.
 
 ## Before you review
 
-**All content is placeholder.** Prices, seller names, ratings, availability, orders and product
-counts are invented so the pages feel real. Fifteen of the 24 shop products still use drawn icons
-rather than photographs — a known gap, not a design choice.
+**All content is placeholder.** Prices, seller names, ratings, availability, orders, product
+counts and the nutrition figures on food products are invented so the pages feel real. Fifteen of
+the 24 shop products still use drawn icons rather than photographs — a known gap, not a design
+choice. Two places say so on the page itself, because they are the two a screenshot would most
+easily be mistaken for fact: the product page's ratings section states that written reviews are
+not designed and the spread shown is illustrative, and the food information panel states that the
+ingredients and nutrition are placeholders.
 
 **This is a design prototype, not the website.** It exists to settle the visual language and
 layout. The product will be built in React and TypeScript — engineering will receive design

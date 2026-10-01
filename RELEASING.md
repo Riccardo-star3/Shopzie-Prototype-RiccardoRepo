@@ -53,6 +53,15 @@ ones. A release that quietly breaks version 4 is worse than a late release.
 
 **5. Commit and push** from GitHub Desktop. Summary line: `Version 7 — <short description>`.
 
+> **Claude does not do this step, and should not run `git` in this folder at all.** Found on
+> 1 October 2026, cutting version 13: the assistant's view of this repository is a mount that
+> **cannot delete files**, and `git status` creates `.git/index.lock` and then deletes it. The
+> delete fails silently — a warning, exit code 0 — and the lock is left behind, which is exactly
+> what makes GitHub Desktop refuse to commit ("Unable to create '.git/index.lock': File exists").
+> A command that only reads can still leave the repository stuck. If it happens, the fix is to
+> delete `.git/index.lock`; nothing else is wrong.
+
+
 **6. Tag it.** On GitHub: Releases → Draft a new release → tag `v7` → publish. A folder can be
 tidied away by accident; a tag cannot.
 
