@@ -19,7 +19,7 @@ decision can be traced back to what people were actually looking at when they ma
 
 | Version | Published | Link |
 |---|---|---|
-| 13 — the product page, and what is in the jar | 1 Oct 2026 | [`/v13-2026-10-01/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v13-2026-10-01/) |
+| 13 — the product page, and nutritional value section | 1 Oct 2026 | [`/v13-2026-10-01/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v13-2026-10-01/) |
 | 12 — bookings a seller can act on | 22 Sep 2026 | [`/v12-2026-09-22/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v12-2026-09-22/) |
 | 11 — a clearer to-do list for sellers | 21 Sep 2026 | [`/v11-2026-09-21/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v11-2026-09-21/) |
 | 10 — the seller dashboard, in panels | 21 Sep 2026 | [`/v10-2026-09-21/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v10-2026-09-21/) |
