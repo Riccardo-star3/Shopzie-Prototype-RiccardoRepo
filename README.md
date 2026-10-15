@@ -3,7 +3,7 @@
 **All versions: https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/**
 
 **Current version (15), published 14 October 2026:**
-https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v16-2026-10-14/
+https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v17-2026-10-15/
 
 ## How the links work
 
@@ -14,11 +14,12 @@ decision can be traced back to what people were actually looking at when they ma
 
 | Share this | When |
 |---|---|
-| A **version link** (`…/v16-2026-10-14/`) | You want someone to look at a specific version. Safe to bookmark, quote in a document, or paste into a ticket. |
+| A **version link** (`…/v17-2026-10-15/`) | You want someone to look at a specific version. Safe to bookmark, quote in a document, or paste into a ticket. |
 | The **index link** (the root, above) | You want someone to find whichever version is current. This is the one page that changes. |
 
 | Version | Published | Link |
 |---|---|---|
+| 17 — the wishlist comparison, rebuilt | 15 Oct 2026 | [`/v17-2026-10-15/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v17-2026-10-15/) |
 | 16 — a wishlist page, where saved products can be compared | 14 Oct 2026 | [`/v16-2026-10-14/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v16-2026-10-14/) |
 | 15 — a tidier journey, one fee, and how to photograph a product | 14 Oct 2026 | [`/v15-2026-10-14/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v15-2026-10-14/) |
 | 14 — three checks, reviews, and a wishlist that works | 8 Oct 2026 | [`/v14-2026-10-08/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v14-2026-10-08/) |
@@ -53,11 +54,11 @@ works, every page is linkable, and the basket survives moving between them.
 | Product | `#/product/<product>` | One product: photograph, price and VAT, the seller, delivery, the return window, and what happens to your money until it arrives. Verified-purchase reviews, and a heart that saves it. Food products also carry ingredients, allergens and nutrition |
 | Become a seller | `#/sell` | Why sell here, how you get started in four steps, how and when you are paid — four steps that arrive as you scroll to them — what it costs, and five questions. The rate is still not settled and the page says so |
 | Our impact | `#/impact` | The fund arithmetic line by line, four funded projects, and the **three** checks every seller clears — it was four until version 14 |
-| Your wishlist | `#/wishlist` | Everything you saved, and up to three of them side by side on price, seller, origin, delivery time, rating and stock. It marks the rows where they agree rather than naming a winner. The list lives in the browser tab and the page says so |
+| Your wishlist | `#/wishlist` | Opens with your first three saved products already side by side on price, seller, origin, delivery time, rating and stock, each row shown rather than stated. Changing what is compared happens below it. Rows where the products agree are marked and can be hidden; no winner is named. The list lives in the browser tab and the page says so |
 | Your dashboard | `#/seller` | The seller side, in panels: To do (with Done today), your money, then orders and listings with status filters and Show more. Services bookings have a list or calendar view and open in a side panel to accept, decline or cancel |
 
 **What changed in this version:**
-[`v16-2026-10-14/WHAT-CHANGED.md`](v16-2026-10-14/WHAT-CHANGED.md) — read that first if you saw
+[`v17-2026-10-15/WHAT-CHANGED.md`](v17-2026-10-15/WHAT-CHANGED.md) — read that first if you saw
 the previous one. Version 15 was cut earlier the same day and went up in the same push, so it
 was never announced on its own; everything in it is also in version 16, and its notes are at
 [`v15-2026-10-14/WHAT-CHANGED.md`](v15-2026-10-14/WHAT-CHANGED.md).
