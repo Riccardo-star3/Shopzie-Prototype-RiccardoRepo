@@ -53,6 +53,13 @@ ones. A release that quietly breaks version 4 is worse than a late release.
 
 **5. Commit and push** from GitHub Desktop. Summary line: `Version 7 — <short description>`.
 
+> **Before touching a version folder again, READ `.git/refs/heads/main` as a file.**
+> Cut and published are different states and only `.git` knows which one you are in —
+> nothing about the folder itself tells you. On 15 October 2026 v17 was cut, pushed and
+> tagged at 12:46, and a newer build was copied over it at 13:11 by someone still
+> thinking of it as "cut". The fix was v18. One button is not worth a version number;
+> editing a published folder is not worth avoiding one.
+
 > **Claude does not do this step, and should not run `git` in this folder at all.** Found on
 > 1 October 2026, cutting version 13: the assistant's view of this repository is a mount that
 > **cannot delete files**, and `git status` creates `.git/index.lock` and then deletes it. The

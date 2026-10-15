@@ -4563,7 +4563,38 @@ a:hover{text-decoration-thickness:2px}
   min-height:44px;padding:0 10px;border:0;background:none;
   font-family:inherit;font-size:13px;line-height:20px;font-weight:700;
   color:var(--mid);cursor:pointer;
-}.wldrop:hover{color:var(--error);text-decoration:underline;text-decoration-thickness:2px}.wlth .wlacts{margin-top:12px}.wlcmpbtn{
+}.wldrop:hover{color:var(--error);text-decoration:underline;text-decoration-thickness:2px}.wlth .wlacts{margin-top:12px}/* ---------- Remove, as a pill, IN THE COMPARISON PANEL ONLY ----------
+   Riccardo, 15 Oct: give it a rounded edge like Move to basket, grey by
+   default, red on hover. The pair then reads as one primary and one secondary
+   action rather than a button with a word next to it.
+
+   MEASURED BEFORE IT WAS WRITTEN:
+     label   --mid #5A625C on white     6.29:1   (text floor 4.5:1)
+     outline --line #7B847D on white    3.86:1   (1.4.11 floor 3:1)
+     hover label --error on --error-soft 7.35:1
+     the hover's luminance step is on the OUTLINE: --line to --error is
+     2.23:1, which clears the 2.02:1 the primary button uses. The LABEL's own
+     step, --mid to --error, is only 1.37:1 — a hue change more than a
+     lightness one — which on its own would be the "nudge in hue" the design
+     rules forbid. The outline and the ground are what carry it.
+
+   NOT ON THE PICKER CARDS BELOW, and that is a decision rather than an
+   oversight. A card's content box is about 226px at the narrowest column; the
+   two pills together need about 248px, so they would wrap onto two rows and
+   sit above a third full-width button. That is exactly the failure of 8
+   October, when a 44px pill in a card row wrapped onto three lines and pushed
+   the price off it. In the panel each column has about 262px, so they fit.
+   If the two ever have to match, the card is the one that has to change. */.wlth .wldrop{
+  display:inline-flex;align-items:center;
+  min-height:44px;padding:0 16px;border-radius:var(--pill);
+  background:#fff;color:var(--mid);
+  box-shadow:inset 0 0 0 1.5px var(--line);
+  transition:color .18s var(--ease),background .18s var(--ease),box-shadow .18s var(--ease);
+}.wlth .wldrop:hover{
+  background:var(--error-soft);color:var(--error);
+  box-shadow:inset 0 0 0 1.5px var(--error);
+  text-decoration:none;
+}.wlcmpbtn{
   display:flex;align-items:center;justify-content:center;gap:8px;
   width:100%;min-height:44px;margin:12px 0 0;border:0;border-radius:var(--pill);
   background:#fff;color:var(--green-d);

@@ -51,6 +51,12 @@ struck through and **what you save**, the seller's own colour, a pin on where it
 from, **delivery as a bar**, the rating as **stars**, the category as its icon, and stock
 as a green or amber badge.
 
+### Remove looks like a button now
+
+In the comparison, **Remove** sits beside **Move to basket** as a matching outlined button
+rather than a word next to a button. It is grey until you point at it and turns red then,
+so a destructive action stays quiet until you mean it.
+
 ### Rows where everything agrees are marked
 
 Two products from the same seller agree on six rows out of eight, and those six drown the
