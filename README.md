@@ -2,15 +2,17 @@
 
 **All versions: https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/**
 
-**Current version (19), published 12 November 2026:**
+**Current version (20), published 12 November 2026:**
 
 | | Open this |
 |---|---|
-| **Phone** — open it on an actual phone | https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v19-2026-11-12/mobile/ |
-| Desktop | https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v19-2026-11-12/ |
+| **Phone** — open it on an actual phone | https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v20-2026-11-12/mobile/ |
+| Desktop | https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v20-2026-11-12/ |
 
-The phone version is a **separate design**, not the desktop at a narrow width.
-The desktop version works on a phone too, and is the other thing entirely.
+The phone version is a **separate design**, not the desktop at a narrow width. It carries the
+same catalogue the desktop does — 24 goods and 24 services — with filters, search, a basket,
+bookings and a checkout that works end to end. The desktop version works on a phone too, and is
+the other thing entirely.
 
 ## How the links work
 
@@ -26,7 +28,8 @@ decision can be traced back to what people were actually looking at when they ma
 
 | Version | Published | Link |
 |---|---|---|
-| **19** | 12 November 2026 | [`/v19-2026-11-12/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v19-2026-11-12/) · [phone](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v19-2026-11-12/mobile/) |
+| **20 — the phone version becomes a real marketplace** | 12 Nov 2026 | [`/v20-2026-11-12/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v20-2026-11-12/) · [phone](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v20-2026-11-12/mobile/) |
+| 19 — a phone version at all | 12 Nov 2026 | [`/v19-2026-11-12/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v19-2026-11-12/) · [phone](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v19-2026-11-12/mobile/) |
 | 18 — the wishlist comparison, simplified | 15 Oct 2026 | [`/v18-2026-10-15/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v18-2026-10-15/) |
 | 17 — the wishlist comparison, rebuilt | 15 Oct 2026 | [`/v17-2026-10-15/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v17-2026-10-15/) |
 | 16 — a wishlist page, where saved products can be compared | 14 Oct 2026 | [`/v16-2026-10-14/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v16-2026-10-14/) |
@@ -66,8 +69,29 @@ works, every page is linkable, and the basket survives moving between them.
 | Your wishlist | `#/wishlist` | Every saved product is a column, side by side on price, seller, origin, delivery time, rating and stock, each row shown rather than stated; the table scrolls sideways with the labels fixed. Rows where the products agree are marked and can be hidden; no winner is named. Anything removed waits at the bottom with a Put it back button. The list lives in the browser tab and the page says so |
 | Your dashboard | `#/seller` | The seller side, in panels: To do (with Done today), your money, then orders and listings with status filters and Show more. Services bookings have a list or calendar view and open in a side panel to accept, decline or cancel |
 
+### The phone version
+
+A second single file, at `/v20-2026-11-12/mobile/`. It is a **mobile website**, not an app:
+the menu is behind a burger, because a website cannot wear an app's bottom tab bar. It carries
+the same 24 goods and 24 services the desktop does, lifted from the desktop pages at build time
+rather than retyped, so there is no second catalogue to drift.
+
+| Screen | What it shows |
+|---|---|
+| Home | Category chips, goods and services teasers, and the band into Become a seller |
+| All goods | 24 goods, eight at a time, with a running count and a filter sheet: category, ships from, arrives within, seller rating, offers, sort. The apply button counts the results first |
+| All services | 24 services, same shape: category, town, rating, availability, sort |
+| Search | One field, both halves of the marketplace at once |
+| Product | Stock, delivery time, seller, Add to basket |
+| Service | Day strip, time grid, a booking that lands in the basket |
+| Basket | Goods and bookings in separate sections — they check out separately, PRD §7.1 |
+| Checkout | Four steps, one thing per screen, with the step number visible throughout. Separate flows for goods and bookings |
+| Become a seller | Why sell here, how you get started, what it costs — and that the commission rate is still open |
+
+Orders and Account say they are not built.
+
 **What changed in this version:**
-[`v18-2026-10-15/WHAT-CHANGED.md`](v18-2026-10-15/WHAT-CHANGED.md) — read that first if you saw
+[`v20-2026-11-12/WHAT-CHANGED.md`](v20-2026-11-12/WHAT-CHANGED.md) — read that first if you saw
 the previous one. Version 15 was cut earlier the same day and went up in the same push, so it
 was never announced on its own; everything in it is also in version 16, and its notes are at
 [`v15-2026-10-14/WHAT-CHANGED.md`](v15-2026-10-14/WHAT-CHANGED.md).
