@@ -2,12 +2,12 @@
 
 **All versions: https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/**
 
-**Current version (20), published 12 November 2026:**
+**Current version (21), published 12 November 2026:**
 
 | | Open this |
 |---|---|
-| **Phone** — open it on an actual phone | https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v20-2026-11-12/mobile/ |
-| Desktop | https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v20-2026-11-12/ |
+| **Phone** — open it on an actual phone | https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v21-2026-11-12/mobile/ |
+| Desktop | https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v21-2026-11-12/ |
 
 The phone version is a **separate design**, not the desktop at a narrow width. It carries the
 same catalogue the desktop does — 24 goods and 24 services — with filters, search, a basket,
@@ -28,7 +28,8 @@ decision can be traced back to what people were actually looking at when they ma
 
 | Version | Published | Link |
 |---|---|---|
-| **20 — the phone version becomes a real marketplace** | 12 Nov 2026 | [`/v20-2026-11-12/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v20-2026-11-12/) · [phone](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v20-2026-11-12/mobile/) |
+| **21 — a switch that gets out of the way** | 12 Nov 2026 | [`/v21-2026-11-12/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v21-2026-11-12/) · [phone](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v21-2026-11-12/mobile/) |
+| 20 — the phone version becomes a real marketplace | 12 Nov 2026 | [`/v20-2026-11-12/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v20-2026-11-12/) · [phone](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v20-2026-11-12/mobile/) |
 | 19 — a phone version at all | 12 Nov 2026 | [`/v19-2026-11-12/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v19-2026-11-12/) · [phone](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v19-2026-11-12/mobile/) |
 | 18 — the wishlist comparison, simplified | 15 Oct 2026 | [`/v18-2026-10-15/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v18-2026-10-15/) |
 | 17 — the wishlist comparison, rebuilt | 15 Oct 2026 | [`/v17-2026-10-15/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v17-2026-10-15/) |
@@ -71,14 +72,14 @@ works, every page is linkable, and the basket survives moving between them.
 
 ### The phone version
 
-A second single file, at `/v20-2026-11-12/mobile/`. It is a **mobile website**, not an app:
+A second single file, at `/v21-2026-11-12/mobile/`. It is a **mobile website**, not an app:
 the menu is behind a burger, because a website cannot wear an app's bottom tab bar. It carries
 the same 24 goods and 24 services the desktop does, lifted from the desktop pages at build time
 rather than retyped, so there is no second catalogue to drift.
 
 | Screen | What it shows |
 |---|---|
-| Home | Category chips, goods and services teasers, and the band into Become a seller |
+| Home | The offers carousel, a Products / Services switch pinned to the top that slides away while you scroll, category chips, Top picks or Popular services, and the band into Become a seller |
 | All goods | 24 goods, eight at a time, with a running count and a filter sheet: category, ships from, arrives within, seller rating, offers, sort. The apply button counts the results first |
 | All services | 24 services, same shape: category, town, rating, availability, sort |
 | Search | One field, both halves of the marketplace at once |
@@ -91,7 +92,7 @@ rather than retyped, so there is no second catalogue to drift.
 Orders and Account say they are not built.
 
 **What changed in this version:**
-[`v20-2026-11-12/WHAT-CHANGED.md`](v20-2026-11-12/WHAT-CHANGED.md) — read that first if you saw
+[`v21-2026-11-12/WHAT-CHANGED.md`](v21-2026-11-12/WHAT-CHANGED.md) — read that first if you saw
 the previous one. Version 15 was cut earlier the same day and went up in the same push, so it
 was never announced on its own; everything in it is also in version 16, and its notes are at
 [`v15-2026-10-14/WHAT-CHANGED.md`](v15-2026-10-14/WHAT-CHANGED.md).
