@@ -2,8 +2,15 @@
 
 **All versions: https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/**
 
-**Current version (15), published 14 October 2026:**
-https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v18-2026-10-15/
+**Current version (19), published 12 November 2026:**
+
+| | Open this |
+|---|---|
+| **Phone** — open it on an actual phone | https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v19-2026-11-12/mobile/ |
+| Desktop | https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v19-2026-11-12/ |
+
+The phone version is a **separate design**, not the desktop at a narrow width.
+The desktop version works on a phone too, and is the other thing entirely.
 
 ## How the links work
 
@@ -19,6 +26,7 @@ decision can be traced back to what people were actually looking at when they ma
 
 | Version | Published | Link |
 |---|---|---|
+| **19** | 12 November 2026 | [`/v19-2026-11-12/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v19-2026-11-12/) · [phone](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v19-2026-11-12/mobile/) |
 | 18 — the wishlist comparison, simplified | 15 Oct 2026 | [`/v18-2026-10-15/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v18-2026-10-15/) |
 | 17 — the wishlist comparison, rebuilt | 15 Oct 2026 | [`/v17-2026-10-15/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v17-2026-10-15/) |
 | 16 — a wishlist page, where saved products can be compared | 14 Oct 2026 | [`/v16-2026-10-14/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v16-2026-10-14/) |
