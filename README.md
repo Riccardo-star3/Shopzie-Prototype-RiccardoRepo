@@ -2,12 +2,14 @@
 
 **All versions: https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/**
 
-**Current version (21), published 12 November 2026:**
+**Current version (22), published 18 November 2026:**
 
 | | Open this |
 |---|---|
-| **Phone** — open it on an actual phone | https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v21-2026-11-12/mobile/ |
-| Desktop | https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v21-2026-11-12/ |
+| **Phone** — open it on an actual phone | https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v22-2026-11-18/mobile/ |
+| Desktop | https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v22-2026-11-18/ |
+
+The phone link is also fine to open on a laptop — it draws itself as a phone sitting on a desk.
 
 The phone version is a **separate design**, not the desktop at a narrow width. It carries the
 same catalogue the desktop does — 24 goods and 24 services — with filters, search, a basket,
@@ -28,6 +30,7 @@ decision can be traced back to what people were actually looking at when they ma
 
 | Version | Published | Link |
 |---|---|---|
+| **22** | 18 November 2026 | [v22-2026-11-18](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v22-2026-11-18/) · [phone](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v22-2026-11-18/mobile/) |
 | **21 — a switch that gets out of the way** | 12 Nov 2026 | [`/v21-2026-11-12/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v21-2026-11-12/) · [phone](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v21-2026-11-12/mobile/) |
 | 20 — the phone version becomes a real marketplace | 12 Nov 2026 | [`/v20-2026-11-12/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v20-2026-11-12/) · [phone](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v20-2026-11-12/mobile/) |
 | 19 — a phone version at all | 12 Nov 2026 | [`/v19-2026-11-12/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v19-2026-11-12/) · [phone](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v19-2026-11-12/mobile/) |
