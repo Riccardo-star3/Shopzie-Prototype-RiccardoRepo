@@ -2,12 +2,13 @@
 
 **All versions: https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/**
 
-**Current version (22), published 18 November 2026:**
+**Current version (23), published 19 November 2026:**
 
 | | Open this |
 |---|---|
-| **Phone** — open it on an actual phone | https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v22-2026-11-18/mobile/ |
-| Desktop | https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v22-2026-11-18/ |
+| **Phone** — open it on an actual phone | https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v23-2026-11-19/mobile/ |
+| Desktop | https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v23-2026-11-19/ |
+| Booking previews — agreed, not built | https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v23-2026-11-19/preview/service-booking.html |
 
 The phone link is also fine to open on a laptop — it draws itself as a phone sitting on a desk.
 
@@ -30,6 +31,7 @@ decision can be traced back to what people were actually looking at when they ma
 
 | Version | Published | Link |
 |---|---|---|
+| **23** | 19 November 2026 | [v23-2026-11-19](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v23-2026-11-19/) · [phone](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v23-2026-11-19/mobile/) |
 | **22** | 18 November 2026 | [v22-2026-11-18](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v22-2026-11-18/) · [phone](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v22-2026-11-18/mobile/) |
 | **21 — a switch that gets out of the way** | 12 Nov 2026 | [`/v21-2026-11-12/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v21-2026-11-12/) · [phone](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v21-2026-11-12/mobile/) |
 | 20 — the phone version becomes a real marketplace | 12 Nov 2026 | [`/v20-2026-11-12/`](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v20-2026-11-12/) · [phone](https://riccardo-star3.github.io/Shopzie-Prototype-RiccardoRepo/v20-2026-11-12/mobile/) |

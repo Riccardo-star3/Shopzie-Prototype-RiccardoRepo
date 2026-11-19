@@ -120,7 +120,7 @@ footer a{color:var(--green-d)}
     <!-- The wordmark points at the CURRENT version, so it moves with each release.
          Everything else on this page is permanent; this link and the Current panel
          are the two things a release has to change. -->
-    <a href="v22-2026-11-18/">
+    <a href="v23-2026-11-19/">
       <span class="glyph" aria-hidden="true">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor"
              stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
@@ -141,13 +141,14 @@ footer a{color:var(--green-d)}
 
     <div class="now">
 <span class="badge">Current</span>
-<h2>Version 22 — the phone works when it is opened on a desktop</h2>
-<span class="when">Published 18 November 2026</span>
-<p><b>Open this one on your phone</b> — but it is now worth opening on a laptop too, which is the point of this release. The phone version is drawn as a phone sitting on a desk when you open it on a bigger screen, and that frame was broken in three ways that never showed up on an actual phone: the page scrolled 300px sideways, the phone was taller than the browser window so its foot hung off the bottom, and a half-width window got a bare column with no frame at all. All three are fixed, and the Products/Services switch now slides away in that frame the way it does on a phone. Separately, <b>the desktop hero now carries service campaigns as well as product ones</b> — ten slides, five of each — and the phone reads that hero at build time and shows the right five for whichever side of the switch you are on. Nothing is really ordered; every screen that could be mistaken for a real offer says so.</p>
+<h2>Version 23 — the service booking screen gets a calendar</h2>
+<span class="when">Published 19 November 2026</span>
+<p><b>Open this one on your phone.</b> Version 22 shipped a bug on the service booking screen — the day cards stacked down the page and the times wrapped seven across, because neither container was styled at all. <b>In its place there is a proper month calendar</b>: arrows, a Mo–Su grid, open days marked with a dot, and a Clear link. Under it a time wheel carrying only the times you can actually have, rather than a grid of struck-out ones. Two more classes that had never done anything since version 20 are fixed: the meta line under every product card, and the full-width checkout buttons that were not full width. <b>There is also a /preview/ folder</b> holding two pages for a booking screen the team has agreed and nobody has built — try them, they respond, but nothing in them is live. The desktop is unchanged from version 22. Nothing is really ordered; every screen that could be mistaken for a real offer says so.</p>
 <div class="row">
-<a class="go" href="v22-2026-11-18/mobile/">Open the phone version</a>
-<a class="go" href="v22-2026-11-18/">Open the desktop version</a>
-<a class="go" href="https://github.com/Riccardo-star3/Shopzie-Prototype-RiccardoRepo/blob/main/v22-2026-11-18/WHAT-CHANGED.md">What changed</a>
+<a class="go" href="v23-2026-11-19/mobile/">Open the phone version</a>
+<a class="go" href="v23-2026-11-19/">Open the desktop version</a>
+<a class="go" href="v23-2026-11-19/preview/service-booking.html">Try the booking preview</a>
+<a class="go" href="https://github.com/Riccardo-star3/Shopzie-Prototype-RiccardoRepo/blob/main/v23-2026-11-19/WHAT-CHANGED.md">What changed</a>
 </div>
 </div>
 
@@ -161,7 +162,16 @@ footer a{color:var(--green-d)}
 
       <li class="item">
 <div class="body">
-<span class="when">Version 22 · 18 November 2026 · current</span>
+<span class="when">Version 23 · 19 November 2026 · current</span>
+<h3><a href="v23-2026-11-19/">The service booking screen gets a calendar</a></h3>
+<p>The day strip that stacked down the page in v22 is replaced by a month calendar — arrows, a Mo–Su grid, open days marked with a dot, a Clear link — and a time wheel carrying only bookable times. Two classes that had done nothing since v20 are fixed: the meta line on every product card, and the checkout buttons that were never full width. A /preview/ folder holds two pages for a booking screen that is agreed but not built. The desktop is unchanged.</p>
+<p class="perma">/v23-2026-11-19/ &nbsp;·&nbsp; phone: /v23-2026-11-19/mobile/</p>
+</div>
+<a class="open" href="v23-2026-11-19/mobile/">Open<span class="sr-only"> version 23, the phone version</span></a>
+</li>
+<li class="item">
+<div class="body">
+<span class="when">Version 22 · 18 November 2026</span>
 <h3><a href="v22-2026-11-18/">The phone works when it is opened on a desktop</a></h3>
 <p>The phone build is drawn as a device on a desk above 560px, and that frame was broken three ways on a laptop: 300px of sideways scroll from a drawer positioned against the browser instead of the phone, a frame taller than the window, and a bare column in any half-width window. All three fixed, and the switch slides away in the frame as it does on a phone. The desktop hero now runs ten slides — five product campaigns, five service ones — and the phone shows the right five for the side of the switch you are on.</p>
 <p class="perma">/v22-2026-11-18/ &nbsp;·&nbsp; phone: /v22-2026-11-18/mobile/</p>

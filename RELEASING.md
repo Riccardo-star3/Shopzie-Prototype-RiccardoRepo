@@ -53,6 +53,13 @@ ones. A release that quietly breaks version 4 is worse than a late release.
 
 **5. Commit and push** from GitHub Desktop. Summary line: `Version 7 — <short description>`.
 
+> **ONCE A VERSION IS CUT, STOP WRITING TO ITS FOLDER. Rebuild into the NEXT one.**
+> Added 19 November 2026, after this happened a second time. v22 was committed, tagged and
+> pushed at midday; the afternoon's work was then copied *over* `v22-2026-11-18/` by someone
+> still thinking of it as the current folder. GitHub Desktop showed two files inside a
+> published version as modified, and the fix was to discard them rather than commit them.
+> The folder on disk and the folder on GitHub had quietly become different things.
+>
 > **Before touching a version folder again, READ `.git/refs/heads/main` as a file.**
 > Cut and published are different states and only `.git` knows which one you are in —
 > nothing about the folder itself tells you. On 15 October 2026 v17 was cut, pushed and
