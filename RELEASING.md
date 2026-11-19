@@ -53,6 +53,13 @@ ones. A release that quietly breaks version 4 is worse than a late release.
 
 **5. Commit and push** from GitHub Desktop. Summary line: `Version 7 — <short description>`.
 
+> **NEVER READ `.git` AND WRITE TO A VERSION FOLDER IN THE SAME COMMAND.**
+> Added 19 November 2026, after this happened to v24 within minutes of it being pushed. The
+> rule below was followed — the refs were read, and they said "committed, tagged, pushed" —
+> but the read and the copy were in the same command, so nothing was gating the copy and it
+> ran anyway. A check that runs beside the action instead of before it is not a check, it is
+> a comment. Read first, in a call of its own, look at the answer, then decide.
+>
 > **ONCE A VERSION IS CUT, STOP WRITING TO ITS FOLDER. Rebuild into the NEXT one.**
 > Added 19 November 2026, after this happened a second time. v22 was committed, tagged and
 > pushed at midday; the afternoon's work was then copied *over* `v22-2026-11-18/` by someone
